@@ -1,0 +1,138 @@
+body {
+  background: #efefef;
+  margin: 0;
+  padding: 0;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  padding: 5px 0px 5px 0px;
+  font-size: 20px;
+  text-align: center;
+}
+
+#next {
+  font-family: "montserrat";
+  background-color: #2b8eff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.box-chat {
+  background-color: #fefefe;
+  padding: 50px;
+  margin: 50px;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10px;
+  min-height: 500px;
+  max-height: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex-direction: column;
+}
+
+.bot {
+  font-family: "montserrat";
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  width: 100%;
+  align-items: flex-end;
+}
+.bot .bot-chat {
+  max-width: 600px;
+  width: 100%;
+}
+.bot .bot-chat .text {
+  background-color: #ecf1f8;
+  color: #2F324A;
+  padding: 20px;
+  border-radius: 10px;
+  font-weight: 400;
+}
+.bot .bot-chat .time {
+  display: flex;
+  justify-content: left;
+  font-weight: 400;
+}
+.bot .bot-image img {
+  max-width: 50px;
+  border-radius: 50px;
+  margin-right: 20px;
+  margin-bottom: 50px;
+}
+
+.user {
+  font-family: "montserrat";
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  width: 100%;
+  align-items: flex-end;
+}
+.user .user-chat {
+  max-width: 600px;
+  width: 100%;
+}
+.user .user-chat .text {
+  background-color: #683db8;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  font-weight: 400;
+}
+.user .user-chat .time {
+  display: flex;
+  justify-content: right;
+  font-weight: 400;
+}
+.user .user-image img {
+  max-width: 50px;
+  border-radius: 50px;
+  margin-left: 20px;
+  margin-bottom: 50px;
+}
+
+.question {
+  font-family: "montserrat";
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.question-chat {
+  max-width: 600px;
+  width: 100%;
+}
+.question-chat .input-quest {
+  font-family: "montserrat";
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  width: 100%;
+  background-color: #f4f4f4;
+  margin: 10px;
+  border-radius: 3px;
+}
+.question-chat .input-quest:hover {
+  background-color: #dddddd;
+  cursor: pointer;
+}
+.question-chat .input-quest input {
+  margin: 5px 5px 5px 5px;
+  cursor: pointer;
+}
+.question-chat .input-quest label {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=style.css.map */
