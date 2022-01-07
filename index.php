@@ -7,8 +7,9 @@
   <link rel="stylesheet" type="text/css" href="dist/css/scrollbar.min.css">
   <script type="text/javascript" src="dist/js/jquery.min.js"></script>
 
-
+<?php $horario = date('H:i:s') ?>
   <title></title>
+
 </head>
 <body>
   <h1  id="testeProgresso" style="color: #fff;" align="center"></h1>
