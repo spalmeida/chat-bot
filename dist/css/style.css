@@ -11,6 +11,11 @@ html, body {
 }
 @font-face {
   font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Montserrat';
   src: url('../fonts/Montserrat-Bold.ttf');
   font-weight: 700;
 }
@@ -18,8 +23,7 @@ body, button {
   font-family: 'Montserrat';
 }
 body {
-  background: linear-gradient(135deg, #174A5D, #1E7789);
-  background-size: cover;
+  background: linear-gradient(135deg, rgba(224,113,44,1) 45%, rgba(63,116,129,1) 100%);
   font-size: 12px;
   line-height: 1.3;
   overflow: hidden;
@@ -56,8 +60,8 @@ a {
   z-index: 2;
   overflow: hidden;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-  background: rgba(0, 0, 0, .5);
-  border-radius: 15px 15px 0 0;
+  background: #3D7581;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -66,7 +70,7 @@ a {
   flex: 0 1 45px;
   position: relative;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.2);
+  background: #2C555E;
   color: #fff;
   text-transform: uppercase;
   text-align: left;
@@ -127,12 +131,17 @@ a {
   margin-left: 35px;
   position: relative;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  font-weight: 500;
 }
 .timestamp {
   position: absolute;
   bottom: -20px;
   font-size: 11px;
-  color: rgba(255, 255, 255, .3);
+  color: #fff;
+  left: 15px;
+}
+.message.message-personal .timestamp {
+  right: 15px;
 }
 .message::before {
   content: '';
@@ -164,8 +173,9 @@ a {
   float: right;
   color: #fff;
   text-align: right;
-  background: linear-gradient(135deg, #174A5D, #1E7789);
+  background: rgba(224,113,44,1);
   border-radius: 10px 10px 0 10px;
+  font-weight: 500;
 }
 .message.message-personal::before {
   left: auto;
@@ -272,9 +282,8 @@ a {
   height: max-content;
   margin: auto;
   right: 10px;
-  color: #174a5d;
   border: none;
-  font-size: 13px;
+  font-size: 15px;
   text-transform: uppercase;
   line-height: 1;
   padding: 6px 10px;
@@ -283,6 +292,8 @@ a {
   transition: all .2s;
   font-weight: 700;
   cursor: pointer;
+  background-color: #E0712C;
+  color: #fff;
 }
 .message-submit:hover {
   transform: scale(1.1);
@@ -352,13 +363,14 @@ a {
 
 
 .question label {
-  background-color: #0a282f;
+  background-color: #3D7581;
   padding: 10px;
   transition: all .4s;
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
   display: block;
+  font-weight: 400;
 }
 .questions {
   margin: 15px 0 25px;
@@ -367,7 +379,7 @@ a {
   display: none;
 }
 .question input:checked + label, .question label:hover {
-  background-color: #1c697b;
+  background-color: #E0712C;
 }
 .question:not(:last-child) {
   margin-bottom: 10px;
@@ -377,14 +389,19 @@ a {
   bottom: -10px;
   top: unset;
 }
+.progress-bar, .progress {
+  border-radius: 50px;
+}
 .progress-bar {
   position: relative;
   height: 10px;
-  background: rgba(0, 0, 0, 0.2);
+  margin: 15px 31px 25px;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  background-color: #4A8B99;
 }
 .progress {
   width: 0;
-  background-color: rgb(29 109 127);
+  background-color: #E0712C;
   z-index: 1;
   transition: all .4s;
   position: absolute;

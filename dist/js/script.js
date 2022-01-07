@@ -1,9 +1,15 @@
 var $messages = $('.messages-content'),
-d, h, m,
+d, h, m, itemjson, alternativasel,
 i = 0;
 
 $(window).load(function() {
   $messages.mCustomScrollbar();
+
+  sessionStorage.setItem('nome_usuario', '');
+  sessionStorage.setItem('empresa_usuario', '');
+  sessionStorage.setItem('email_usuario', '');
+  sessionStorage.setItem('telefone_usuario', '');
+
   setTimeout(function() {
     fakeMessage();
   }, 100);
@@ -17,15 +23,18 @@ function updateScrollbar() {
 }
 
 function insertMessage() {
+  itemjson = $('.message-input').attr('name') ? $('.message-input').attr('name') : 'resposta_';
   if($('.message-input').length > 0) {
-    msg = $('.message-input').val();
+    msg = $('.message-input').val(); //funcao para quebrar invulnerabilidade aquiiiii
+    sessionStorage.setItem(itemjson+'_usuario', msg);
+    $('<div class="message message-personal"><div class="msg">' + msg + '</div></div>').appendTo($('.mCSB_container')).addClass('new');
   } else if($('#questions .question').length > 0) {
-    msg = $('#questions input:checked').siblings('label').html();
+    msg = $('#questions input:checked').siblings('label').html(); //funcao para quebrar invulnerabilidade aquiiiii
+    $('<div class="message message-personal" alternativa="'+$('#questions input:checked').attr('id')+'">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
   } else if ($.trim(msg) == '') {
     return false;
   }
 
-  $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
   setDate();
   //$('.message-input').val(null);
   $('.message-box').remove();
@@ -58,7 +67,7 @@ questions('a) Ainda não aplicamos processos de gestão de desempenho', 'b) Esta
 
 '2: Atualmente, é feito o uso de alguma plataforma ou sistema de gestão de desempenho para facilitar e/ou automatizar o processo de gestão de desempenho na sua empresa?'+
 questions('a) Ainda não usamos nenhuma ferramenta para auxiliar o processo','b) Estamos em fase de implementação da ferramenta','c) Até usamos, mas não oferece todas as funcionalidades necessárias','d) Já usamos e atende todas as necessidades da empresa'),
-
+/*
 '3: Legal. Agora quero entender mais sobre as estratégias usadas. No processo de gestão de desenvolvimento, sua empresa utiliza a prática de people analytics?'+
 questions('a) Não utilizamos essa prática','b) A prática está sendo implementada nos processos','c) A empresa usa people analytics, mas precisa evoluir','d) Já implementamos a prática do people analytics em nossa gestão de desempenho e funciona perfeitamente'),
 
@@ -84,6 +93,7 @@ questions('a) Não realizamos avaliações de pares','b) Estamos implementando a
 questions('a) Não realizamos a contratação de desempenho/metas','b) Estamos dando início ao processo de gestão de desempenho, iniciando assim, a contratação de desempenho/metas','c) Já realizamos a contratação de desempenho/metas, porém, temos muito a evoluir','d) Atualmente, usamos a contratação de desempenho/metas e o processo acontece com muita eficiência'),
 
 'Agora que conheço melhor o seu processo de gestão de desempenho, você pode me passar o seu e-mail para seguirmos com o diagnóstico?',
+questionInput('email'),
 
 '11: Vamos lá, faltam algumas perguntas para concluirmos o diagnóstico. A equipe de RH utiliza um modelo definido de competências (funcional, técnica, comportamental, liderança, organizacional, entre outros)?'+
 questions('a) Não usamos um modelo definido de competências','b) Estamos no estágio de definição das competências','c) Utilizamos/analisamos as competências, porém, não temos um modelo definido','d) Já colocamos em prática um modelo definido de competências e ele funciona muito bem'),
@@ -113,6 +123,7 @@ questions('a) Não, pois ainda não aplicamos reconhecimento diferenciado para o
 questions('a) Não realizamos feedback contínuo','b) Estamos implementando o feedback contínuo em nosso cotidiano de trabalho','c) O feedback contínuo já é uma realidade em nossa empresa, porém, precisamos aperfeiçoar o processo','d) Já realizamos o feedback contínuo no dia a dia de trabalho. Isso está sendo muito importante para direcionar o desempenho dos colaboradores'),
 
 'Para finalizar as perguntas, preciso do seu telefone. Você pode me passar incluindo o DDD, por favor?',
+questionInput('telefone'),
 
 '20: As ações de desenvolvimento (PDI) e carreira (mérito e promoção) são tratadas em momentos distintos?'+
 questions('a) Essas ações não são tratadas em nossa empresa','b) Estamos implementando ambas as ações em nosso cotidiano','c) As ações ainda não acontecem em momentos distintos em nossa empresa','d) As ações de PDI e carreira acontecem em momentos distintos em nossa organização'),
@@ -128,8 +139,8 @@ questions('a) Não temos Pipeline de Liderança','b) Estamos implementando o Pip
 
 '24: O PDI é algo obrigatório para todos os níveis da organização?'+
 questions('a) Não usamos PDI','b) Estamos implementando o PDI em nossa empresa','c) O PDI é uma realidade em nossa organização, mas ainda não acontece em todos os níveis','d) Todos os níveis da organização usam o PDI'),
-
-'Chegou a hora de gerar o diagnóstico de maturidade de gestão de desenvolvimento da sua empresa. Veja!'
+*/
+'Chegou a hora de gerar o diagnóstico de maturidade de gestão de desenvolvimento da sua empresa. Veja!'+finish()
 
 ]
 
@@ -138,23 +149,23 @@ function questions(question_a, question_b, question_c, question_d){
   <div class="questions" id="questions">
 
   <div class="question">
-  <input type="radio" name="question" id="question_a">
-  <label for="question_a">`+question_a+`</label>
+  <input type="radio" name="question" id="a">
+  <label for="a">`+question_a+`</label>
   </div>
 
   <div class="question">
-  <input type="radio" name="question" id="question_b">
-  <label for="question_b">`+question_b+`</label>
+  <input type="radio" name="question" id="b">
+  <label for="b">`+question_b+`</label>
   </div>
 
   <div class="question">
-  <input type="radio" name="question" id="question_c">
-  <label for="question_c">`+question_c+`</label>
+  <input type="radio" name="question" id="c">
+  <label for="c">`+question_c+`</label>
   </div>
 
   <div class="question">
-  <input type="radio" name="question" id="question_d">
-  <label for="question_d">`+question_d+`</label>
+  <input type="radio" name="question" id="d">
+  <label for="d">`+question_d+`</label>
   </div>
   
   <button type="submit" class="message-submit hide" >Enviar</button>
@@ -174,6 +185,14 @@ function questionInput(name){
   return input;
 }
 
+function finish() {
+  let finish = `
+    <button type="submit" class="message-finish" >Finalizar</button>
+  `;
+
+  return finish;
+}
+
 function handleQuestions() {
   $('.question').on('change', function(){
     $(this).siblings('.message-submit').removeClass('hide');
@@ -181,6 +200,36 @@ function handleQuestions() {
 
   $('.message-submit').on('click', function() {
     insertMessage(); 
+  });  
+
+
+  ////// continuar daquiiiiiii - criar inputs hidden com o número da pergunta pra saber qual que é pra montar o json
+  $('.message-finish').on('click', function() {    
+    var json = {
+      "nome_usuario": sessionStorage.getItem('nome_usuario'),
+      "empresa_usuario": sessionStorage.getItem('empresa_usuario'),
+      "email_usuario": sessionStorage.getItem('email_usuario'),
+      "telefone_usuario": sessionStorage.getItem('telefone_usuario'),
+      "perguntas": {}
+    };    
+
+    var stringpr = '';
+
+    var countmess = 0;
+    $('.message').each(function(){
+      if(!$(this).is(':last-child')) {
+        if(!$(this).hasClass('message-personal')) {
+          countmess++;
+          stringpr += `"pergunta_${countmess}" : ${$(this).find('.pergunta').html()},`;
+        } else {
+          stringpr += `"resposta_${countmess}" : ${ $(this).attr('alternativa') ? $(this).attr('alternativa') : $(this).find('.msg').html() },`;
+        }
+      }
+    });
+
+    stringpr = stringpr.replace(/,$/, '');
+
+    console.log(stringpr, 'stringpr')
   });  
 }
 
@@ -192,10 +241,30 @@ function fakeMessage() {
 
   setTimeout(function() {
     $('.message.loading').remove();
-    $('<div class="message new"><figure class="avatar"><img src="https://raw.githubusercontent.com/sabasan13/sabasan13.github.io/master/fakemessage-profile.jpg" alt=""></figure>' + Fake[i] + '</div>').appendTo($('.mCSB_container')).addClass('new');
+    $('<div class="message new"><figure class="avatar"><img src="https://raw.githubusercontent.com/sabasan13/sabasan13.github.io/master/fakemessage-profile.jpg" alt=""></figure><div class="pergunta">' + Fake[i] + '</div></div>').appendTo($('.mCSB_container')).addClass('new');
     handleQuestions();
     setDate();
     updateScrollbar();
     i++;
   }, 1000 + (Math.random() * 20) * 100);
 }
+
+
+
+
+
+/*
+{
+  "nome_usuario": "samuel",
+  "empresa_usuario": "life",
+  "email_usuario": "email@teste.com",
+  "telefone_usuario": "15999999999",
+  "perguntas" : {
+    "pergunta_1" : "uhsaihsiayhisuha",
+    "resposta_1" : "a",
+
+    "pergunta_2" : "uhsaihsiayhisuha",
+    "resposta_2" : "a"
+  }
+}
+*/
