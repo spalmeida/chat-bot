@@ -168,6 +168,7 @@ function questions(question_a, question_b, question_c, question_d){
   `;
   return questions;
 }
+//teste123
 
 function questionInput(name){
   let input = `
