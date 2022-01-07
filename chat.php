@@ -20,7 +20,7 @@ function wpdocs_register_my_custom_menu_page() {
         __( 'Chat BOT', 'textdomain' ),
         'Chat BOT',
         'manage_options',
-        'chat/index.html',
+        'chat/page-wp/index.php',
         '',
         plugins_url( 'chat/dist/images/bot-icon.png' ),
         6
