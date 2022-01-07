@@ -95,93 +95,43 @@ questions('a) O desdobramento de metas não existe em minha empresa','b) Estamos
 '13: Vamos falar um pouco sobre resultados. As metas (KPIs) obtidas por meio da avaliação de resultados são acompanhadas de forma periódica?'+
 questions('a) Não realizamos a análise dos KPIs','b) Estamos estabelecendo quais serão os KPIs para análise','c) Já definimos quais serão os KPIs a serem analisados, porém, isso ainda não acontece com efetividade','d) Acompanhamos periodicamente os KPIs colhidos por meio da avaliação de resultados, que acontece periodicamente'),
 
-'Bye'+
-questions('','','',''),
+'14: Na sua empresa, a avaliação de potencial é colocada em prática?'+
+questions('a) Não realizamos a avaliação de potencial','b) Estamos em fase de implementação da avaliação de potencial','c) Já temos uma avaliação de potencial, mas existem pontos a serem melhorados para a sua aplicação','d) Realizamos a análise de potencial e ela acontece com eficiência'),
 
-'Bye'+
-questions('','','',''),
+'15: Existe uma escala de avaliação?'+
+questions('a) Não contamos com nenhuma escala de avaliação','b) Estamos estudando quais escalas de avaliação utilizar','c) Já temos uma escala de avaliação, porém, existem pontos a melhorar','d) Usamos uma escala de avaliação para analisar os resultados obtidos e isso funciona muito bem'),
 
-'Bye'+
-questions('','','',''),
+'16: Os líderes possuem uma rotina para realizar o acompanhamento com o liderado ao longo do ciclo?'+
+questions('a) Os líderes não possuem essa rotina','b) Estamos estruturando a rotina de acompanhamento entre o líder e os liderados','c) Os líderes realizam o acompanhamento, porém, não acontecem de forma periódica e acaba sendo ineficaz','d) O acompanhamento entre o líder e o liderado acontece periodicamente ao longo do ciclo'),
 
-'Bye'+
-questions('','','',''),
+'17: No dia a dia, os líderes possuem a prática de registro de evidências ou deixam isso apenas para o final do ciclo?'+
+questions('a) Os líderes não possuem a prática de registrar as evidências durante o dia a dia','b) Estamos implementando essa cultura com os líderes','c) Os líderes anotam as evidências, mas o processo ainda é ineficiente e precisa ser aprimorado','d) Os líderes fazem as anotações das evidências no dia a dia e não deixam tudo para o final do ciclo'),
 
-'Bye'+
-questions('','','',''),
+'18: Os colaboradores possuem clareza de que os profissionais com melhor performance serão reconhecidos de forma diferencial?'+
+questions('a) Não, pois ainda não aplicamos reconhecimento diferenciado para os profissionais com melhor performance','b) Estamos começando a divulgar essa informação de maneira mais estruturada','c) Apesar de aplicarmos o reconhecimento diferenciado para os profissionais com melhor performance, nem todos os colaboradores sabem sobre o assunto','d) Nossos colaboradores já sabem sobre o reconhecimento diferenciado para profissionais com melhor performance. Isso até os deixou mais engajados e produtivos'),
 
-'Bye'+
-questions('','','',''),
+'19: Na sua empresa, acontece um processo de feedback contínuo na rotina de trabalho como forma constante de direcionamento do desempenho?'+
+questions('a) Não realizamos feedback contínuo','b) Estamos implementando o feedback contínuo em nosso cotidiano de trabalho','c) O feedback contínuo já é uma realidade em nossa empresa, porém, precisamos aperfeiçoar o processo','d) Já realizamos o feedback contínuo no dia a dia de trabalho. Isso está sendo muito importante para direcionar o desempenho dos colaboradores'),
 
-'Bye'+
-questions('','','',''),
+'Para finalizar as perguntas, preciso do seu telefone. Você pode me passar incluindo o DDD, por favor?',
 
-'Bye'+
-questions('','','',''),
+'20: As ações de desenvolvimento (PDI) e carreira (mérito e promoção) são tratadas em momentos distintos?'+
+questions('a) Essas ações não são tratadas em nossa empresa','b) Estamos implementando ambas as ações em nosso cotidiano','c) As ações ainda não acontecem em momentos distintos em nossa empresa','d) As ações de PDI e carreira acontecem em momentos distintos em nossa organização'),
 
-'Bye'+
-questions('','','',''),
+'21: O avaliado registra sobre o processo de feedback e feedfoward?'+
+questions('a) Não realizamos feedback e feedfoward','b) Estamos implementando o processo de feedback feedfoward','c) Apesar do feedback e feedfoward acontecerem, o avaliado não registra sobre','d) O avaliado registra sobre o processo de feedback e feedfoward'),
 
-'Bye'+
-questions('','','',''),
+'22: Para ser mais assertivo, o líder precisa ter acesso aos resultados da gestão de desempenho on time. Isso acontece em sua empresa?'+
+questions('a) Não realizamos gestão de desempenho','b) Estamos implementando a gestão de desempenho','c) O líder só tem acesso aos resultados no final do processo de gestão de desempenho','d) O líder acompanha os resultados da gestão de desempenho on time'),
 
-'Bye'+
-questions('','','',''),
+'23: Sua empresa tem visibilidade do Pipeline de Liderança?'+
+questions('a) Não temos Pipeline de Liderança','b) Estamos implementando o Pipeline de Liderança','c) O Pipeline de Liderança é uma realidade em nossa empresa, mas precisa ser aprimorado','d) A nossa empresa tem total visibilidade do Pipeline de Liderança'),
 
-'Bye'+
-questions('','','',''),
+'24: O PDI é algo obrigatório para todos os níveis da organização?'+
+questions('a) Não usamos PDI','b) Estamos implementando o PDI em nossa empresa','c) O PDI é uma realidade em nossa organização, mas ainda não acontece em todos os níveis','d) Todos os níveis da organização usam o PDI'),
 
-'Bye'+
-questions('','','',''),
+'Chegou a hora de gerar o diagnóstico de maturidade de gestão de desenvolvimento da sua empresa. Veja!'
 
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-
-'Bye'+
-questions('','','',''),
-':)'
 ]
 
 //questions('','','','')
