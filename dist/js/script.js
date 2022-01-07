@@ -51,7 +51,12 @@ $(window).on('keydown', function(e) {
 
 
 var Fake = [
-'Olá, sou a Lilian, assistente virtual da Actio Software. Me conte mais sobre você! Qual é o seu nome e em qual empresa você trabalha?',
+'Olá, sou a Lilian, assistente virtual da <b>Actio Software</b>. Me conte mais sobre você! Qual é o seu nome?'+
+questionInput('nome'),
+
+'Certo! Em qual empresa você trabalha?'+
+questionInput('empresa'),
+
 'Que legal! É um prazer te conhecer. Agora vamos dar início ao diagnóstico de maturidade do RH da sua empresa. Para isso, responda as perguntas com a opção que melhor se enquadra com a sua realidade, ok? Todas as informações serão protegidas de acordo com as regras da LGPD e você pode acompanhar nossa <a href="https://actiosoftware.com/privacidade/">Política de Privacidade</a>',
 
 '1: Para começar, quero entender como funciona o RH da sua empresa atualmente. Existe um processo estruturado e periódico de gestão de desempenho em sua empresa (bimestral, trimestral, semestral, anual...)? O processo atual funciona conforme esperado?'+
@@ -161,6 +166,17 @@ function questions(question_a, question_b, question_c, question_d){
   </div>
   `;
   return questions;
+}
+
+function questionInput(name){
+  let input = `
+    <div class="message-box">
+      <textarea name="`+name+`" type="text" class="message-input" placeholder="Escrever..."></textarea>
+      <button type="submit" class="message-submit" >Enviar</button>
+    </div>
+  `;
+
+  return input;
 }
 
 function fakeMessage() {
