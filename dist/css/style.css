@@ -26,7 +26,7 @@ body {
   margin: 0;
 }
 a {
-  color: rgba(255, 255, 255, .5);
+  color: rgba(255, 255, 255, .7);
   font-weight: 700;
 }
 .hide {
@@ -103,7 +103,7 @@ a {
 }
 .messages {
   flex: 1 1 auto;
-  color: #fff;
+  color: rgba(255, 255, 255, .7);
   overflow: hidden;
   position: relative;
   width: 100%;
