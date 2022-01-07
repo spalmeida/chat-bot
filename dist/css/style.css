@@ -118,7 +118,7 @@ a {
 .message {
   clear: both;
   float: left;
-  padding: 6px 10px 7px;
+  padding: 15px;
   border-radius: 10px 10px 10px 0;
   background: rgba(0, 0, 0, .3);
   margin: 8px 0;
@@ -246,6 +246,8 @@ a {
   background: rgba(0, 0 , 0, 0.3);
   padding: 10px;
   position: relative;
+  margin: 15px 0 0;
+  border-radius: 10px;
 }
 .message-input {
   background: none;
@@ -253,10 +255,11 @@ a {
   outline: none !important;
   resize: none;
   color: rgba(255, 255, 255, .7);
-  font-size: 11px;
-  height: 23px;
+  font-size: 15px;
   margin: 0;
-  width: calc(100% - 70px);
+  min-height: 25px;
+  height: max-content;
+  width: calc(100% - 80px);
 }
 .message-box textarea:focus:-webkit-placeholder {
   color: transparent;
@@ -264,7 +267,7 @@ a {
 .message-submit {
   position: absolute;
   z-index: 1;
-  top: 9px;
+  top: 10px;
   right: 10px;
   color: #174a5d;
   border: none;
@@ -274,12 +277,12 @@ a {
   padding: 6px 10px;
   border-radius: 10px;
   outline: none !important;
-  transition: all .3s;
+  transition: all .2s;
   font-weight: 700;
   cursor: pointer;
 }
 .message-submit:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 .mCSB_scrollTools {
   margin: 1px -3px 1px 0;
@@ -387,4 +390,21 @@ a {
   margin: auto;
   display: block;
   left: 0;
+}
+
+@media (max-width: 992px) {
+  .message .avatar {
+    left: 0;
+    bottom: -55px;
+  }  
+  .message.new {
+    margin-left: 0;
+  }  
+  .mCSB_inside > .mCSB_container {
+    margin-right: 0;
+    padding: 5px 15px;
+  }  
+  .message.new:not(.message-personal) {
+    margin-bottom: 55px;
+  }
 }
