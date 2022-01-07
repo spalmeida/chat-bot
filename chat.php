@@ -5,8 +5,8 @@
 * Plugin URI: https://agencia.life
 * Description: Chat BOT - Agência Life.
 * Version: 1.1.0
-* Author: Samuel Prado Almeida
-* Author URI: https://github.com/worldvisual
+* Author: Samuel Prado Almeida e Mariana Caramico
+* Author URI: https://github.com/worldvisual/chat-bot
 * License: GPL2
 */
 
