@@ -103,7 +103,7 @@ a {
 }
 .messages {
   flex: 1 1 auto;
-  color: rgba(255, 255, 255, .5);
+  color: #fff;
   overflow: hidden;
   position: relative;
   width: 100%;
