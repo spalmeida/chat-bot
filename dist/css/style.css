@@ -29,6 +29,9 @@ a {
   color: rgba(255, 255, 255, .5);
   font-weight: 700;
 }
+.hide {
+  display: none !important;
+}
 /*
 .bg {
   width: 100%;
@@ -71,7 +74,7 @@ a {
 }
 .chat-title h1, .chat-title h2 {
   font-weight: normal;
-  font-size: 12px;
+  font-size: 13px;
   margin: 0;
   padding: 0;
 }
@@ -119,7 +122,7 @@ a {
   border-radius: 10px 10px 10px 0;
   background: rgba(0, 0, 0, .3);
   margin: 8px 0;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.4;
   margin-left: 35px;
   position: relative;
@@ -127,8 +130,8 @@ a {
 }
 .timestamp {
   position: absolute;
-  bottom: -15px;
-  font-size: 9px;
+  bottom: -20px;
+  font-size: 11px;
   color: rgba(255, 255, 255, .3);
 }
 .message::before {
@@ -337,4 +340,34 @@ a {
   from {
     transform: translateY(-10px);
   }
+}
+
+
+
+
+.question label {
+  background-color: #0a282f;
+  padding: 10px;
+  transition: all .4s;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+}
+.questions {
+  margin: 15px 0 25px;
+}
+.question input {
+  display: none;
+}
+.question input:checked + label, .question label:hover {
+  background-color: #1c697b;
+}
+.question:not(:last-child) {
+  margin-bottom: 10px;
+}
+.questions .message-submit {
+  position: absolute;
+  bottom: -10px;
+  top: unset;
 }
