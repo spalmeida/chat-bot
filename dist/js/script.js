@@ -134,8 +134,6 @@ questions('a) Não usamos PDI','b) Estamos implementando o PDI em nossa empresa'
 
 ]
 
-//questions('','','','')
-
 function questions(question_a, question_b, question_c, question_d){
   let questions = `
   <div class="questions" id="questions">
