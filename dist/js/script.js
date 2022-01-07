@@ -180,9 +180,9 @@ function questionInput(name){
 }
 
 function fakeMessage() {
-  if ($('.message-input').val() != '') {
-    return false;
-  }
+  // if ($('.message-input').val() != '') {
+  //   return false;
+  // }
   $('<div class="message loading new"><figure class="avatar"><img src="https://raw.githubusercontent.com/sabasan13/sabasan13.github.io/master/fakemessage-profile.jpg" alt=""></figure><span></span></div>').appendTo($('.mCSB_container')).addClass('new');
   updateScrollbar();
 
