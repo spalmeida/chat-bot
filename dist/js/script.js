@@ -26,22 +26,24 @@ function setDate() {
 }
 
 function insertMessage() {
-  msg = $('.message-input').val();
-  if ($.trim(msg) == '') {
+  if($('.message-input').length > 0) {
+    msg = $('.message-input').val();
+  } else if($('#questions .question').length > 0) {
+    msg = $('#questions input:checked').siblings('label').html();
+  } else if ($.trim(msg) == '') {
     return false;
   }
+
   $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
   setDate();
-  $('.message-input').val(null);
+  //$('.message-input').val(null);
+  $('.message-box').remove();
+  $('#questions').remove();
   updateScrollbar();
   setTimeout(function() {
     fakeMessage();
   }, 1000 + (Math.random() * 20) * 100);
 }
-
-$('.message-submit').click(function() {
-  insertMessage();
-});
 
 $(window).on('keydown', function(e) {
   if (e.which == 13) {
@@ -57,9 +59,9 @@ questionInput('nome'),
 
 'Certo! Em qual empresa você trabalha?'+
 questionInput('empresa'),
-
+/*
 'Que legal! É um prazer te conhecer. Agora vamos dar início ao diagnóstico de maturidade do RH da sua empresa. Para isso, responda as perguntas com a opção que melhor se enquadra com a sua realidade, ok? Todas as informações serão protegidas de acordo com as regras da LGPD e você pode acompanhar nossa <a target="_blank" href="https://actiosoftware.com/privacidade/">Política de Privacidade</a>',
-
+*/
 '1: Para começar, quero entender como funciona o RH da sua empresa atualmente. Existe um processo estruturado e periódico de gestão de desempenho em sua empresa (bimestral, trimestral, semestral, anual...)? O processo atual funciona conforme esperado?'+
 questions('a) Ainda não aplicamos processos de gestão de desempenho', 'b) Estamos dando início ao processo de gestão de desempenho', 'c) Já aplicamos o processo estruturado e periódico de gestão de desempenho, mas sabemos que ainda existem pontos de melhoria', 'd) O processo de gestão de desempenho acontece de forma estruturada e periódica na minha empresa' ),
 
@@ -164,11 +166,11 @@ function questions(question_a, question_b, question_c, question_d){
   <label for="question_d">`+question_d+`</label>
   </div>
   
+  <button type="submit" class="message-submit hide" >Enviar</button>
   </div>
   `;
   return questions;
 }
-//teste123
 
 function questionInput(name){
   let input = `
@@ -181,6 +183,16 @@ function questionInput(name){
   return input;
 }
 
+function handleQuestions() {
+  $('.question').on('change', function(){
+    $(this).siblings('.message-submit').removeClass('hide');
+  })
+
+  $('.message-submit').on('click', function() {
+    insertMessage(); 
+  });  
+}
+
 function fakeMessage() {
   
   $(".progress").css("width",((i+1)/Fake.length)*100+'%')
@@ -190,6 +202,7 @@ function fakeMessage() {
   setTimeout(function() {
     $('.message.loading').remove();
     $('<div class="message new"><figure class="avatar"><img src="https://raw.githubusercontent.com/sabasan13/sabasan13.github.io/master/fakemessage-profile.jpg" alt=""></figure>' + Fake[i] + '</div>').appendTo($('.mCSB_container')).addClass('new');
+    handleQuestions();
     setDate();
     updateScrollbar();
     i++;
