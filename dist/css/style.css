@@ -121,7 +121,7 @@ a {
   padding: 15px;
   border-radius: 10px 10px 10px 0;
   background: rgba(0, 0, 0, .3);
-  margin: 8px 0;
+  margin: 8px 0 20px;
   font-size: 14px;
   line-height: 1.4;
   margin-left: 35px;
@@ -267,7 +267,10 @@ a {
 .message-submit {
   position: absolute;
   z-index: 1;
-  top: 10px;
+  top: 0;
+  bottom: 0;
+  height: max-content;
+  margin: auto;
   right: 10px;
   color: #174a5d;
   border: none;

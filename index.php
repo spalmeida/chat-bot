@@ -1,3 +1,5 @@
+<?php date_default_timezone_set('America/Sao_Paulo'); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +9,13 @@
   <link rel="stylesheet" type="text/css" href="dist/css/scrollbar.min.css">
   <script type="text/javascript" src="dist/js/jquery.min.js"></script>
 
-<?php $horario = date('H:i:s') ?>
   <title></title>
+
+  <script>
+    function setDate() {
+      $('<div class="timestamp">' + "<?= date('H:i:s') ?>" + '</div>').appendTo($('.message:last'));
+    }
+  </script>
 
 </head>
 <body>
