@@ -401,7 +401,7 @@ a {
     margin-left: 0;
   }  
   .mCSB_inside > .mCSB_container {
-    margin-right: 0;
+    margin-right: 0 !important;
     padding: 5px 15px;
   }  
   .message.new:not(.message-personal) {
