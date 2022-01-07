@@ -378,7 +378,6 @@ a {
 }
 .progress {
   width: 0;
-  width: 8%;
   background-color: rgb(29 109 127);
   z-index: 1;
   transition: all .4s;

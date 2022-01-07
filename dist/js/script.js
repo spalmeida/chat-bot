@@ -57,7 +57,7 @@ questionInput('nome'),
 'Certo! Em qual empresa você trabalha?'+
 questionInput('empresa'),
 
-'Que legal! É um prazer te conhecer. Agora vamos dar início ao diagnóstico de maturidade do RH da sua empresa. Para isso, responda as perguntas com a opção que melhor se enquadra com a sua realidade, ok? Todas as informações serão protegidas de acordo com as regras da LGPD e você pode acompanhar nossa <a href="https://actiosoftware.com/privacidade/">Política de Privacidade</a>',
+'Que legal! É um prazer te conhecer. Agora vamos dar início ao diagnóstico de maturidade do RH da sua empresa. Para isso, responda as perguntas com a opção que melhor se enquadra com a sua realidade, ok? Todas as informações serão protegidas de acordo com as regras da LGPD e você pode acompanhar nossa <a target="_blank" href="https://actiosoftware.com/privacidade/">Política de Privacidade</a>',
 
 '1: Para começar, quero entender como funciona o RH da sua empresa atualmente. Existe um processo estruturado e periódico de gestão de desempenho em sua empresa (bimestral, trimestral, semestral, anual...)? O processo atual funciona conforme esperado?'+
 questions('a) Ainda não aplicamos processos de gestão de desempenho', 'b) Estamos dando início ao processo de gestão de desempenho', 'c) Já aplicamos o processo estruturado e periódico de gestão de desempenho, mas sabemos que ainda existem pontos de melhoria', 'd) O processo de gestão de desempenho acontece de forma estruturada e periódica na minha empresa' ),
@@ -180,9 +180,8 @@ function questionInput(name){
 }
 
 function fakeMessage() {
-  // if ($('.message-input').val() != '') {
-  //   return false;
-  // }
+  
+  $(".progress").css("width",((i+1)/Fake.length)*100+'%')
   $('<div class="message loading new"><figure class="avatar"><img src="https://raw.githubusercontent.com/sabasan13/sabasan13.github.io/master/fakemessage-profile.jpg" alt=""></figure><span></span></div>').appendTo($('.mCSB_container')).addClass('new');
   updateScrollbar();
 
