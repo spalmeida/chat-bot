@@ -3,6 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="dist/css/scrollbar.min.css">
+  <link rel="stylesheet" type="text/css" href="dist/css/style.css">
+  <script type="text/javascript" src="dist/js/jquery.min.js"></script>
+  <script type="text/javascript" src="dist/js/script.js"></script>
+  <script type="text/javascript" src="dist/js/scrollbar.concat.min.js"></script>
   <script>
     function setDate() {
       $('<div class="timestamp">' + "<?= date('H:i:s') ?>" + '</div>').appendTo($('.message:last'));
