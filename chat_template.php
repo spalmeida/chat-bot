@@ -1,16 +1,10 @@
-<?php date_default_timezone_set('America/Sao_Paulo'); ?>
-
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="dist/css/style.css">
-  <link rel="stylesheet" type="text/css" href="dist/css/scrollbar.min.css">
-  <script type="text/javascript" src="dist/js/jquery.min.js"></script>
 
-  <title></title>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script>
     function setDate() {
       $('<div class="timestamp">' + "<?= date('H:i:s') ?>" + '</div>').appendTo($('.message:last'));
@@ -35,8 +29,5 @@
     <div class="progress-bar"><div class="progress"></div></div>
   </div>
 
-  <script type="text/javascript" src="dist/js/scrollbar.concat.min.js"></script>
-
-  <script type="text/javascript" src="dist/js/script.js"></script>
 </body>
 </html>

@@ -7,26 +7,26 @@ var stringjson = '{ "perguntas": {';
 $(window).load(function() {
   $messages.mCustomScrollbar();
 
-  sessionStorage.setItem('nome_usuario', '');
-  sessionStorage.setItem('empresa_usuario', '');
-  sessionStorage.setItem('email_usuario', '');
-  sessionStorage.setItem('telefone_usuario', '');
+    sessionStorage.setItem('nome_usuario', '');
+    sessionStorage.setItem('empresa_usuario', '');
+    sessionStorage.setItem('email_usuario', '');
+    sessionStorage.setItem('telefone_usuario', '');
 
-  setTimeout(function() {
-    fakeMessage();
-  }, 100);
-});
-
-function updateScrollbar() {
-  $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
-    scrollInertia: 10,
-    timeout: 0
+    setTimeout(function() {
+      fakeMessage();
+    }, 100);
   });
-}
 
-function insertMessage() {
-  itemjson = $('.message-input').attr('name') ? $('.message-input').attr('name') : 'resposta_';
-  if($('.message-input').length > 0) {
+  function updateScrollbar() {
+    $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
+      scrollInertia: 10,
+      timeout: 0
+    });
+  }
+
+  function insertMessage() {
+    itemjson = $('.message-input').attr('name') ? $('.message-input').attr('name') : 'resposta_';
+    if($('.message-input').length > 0) {
     msg = $('.message-input').val(); //funcao para quebrar invulnerabilidade aquiiiii
     sessionStorage.setItem(itemjson+'_usuario', msg);
     $('<div class="message message-personal"><div class="msg">' + msg + '</div></div>').appendTo($('.mCSB_container')).addClass('new');
@@ -208,10 +208,10 @@ function questions(question_a, question_b, question_c, question_d){
 
 function questionInput(name){
   let input = `
-    <div class="message-box">
-      <textarea name="`+name+`" type="text" class="message-input" placeholder="Escrever..."></textarea>
-      <button type="submit" class="message-submit" >Enviar</button>
-    </div>
+  <div class="message-box">
+  <textarea name="`+name+`" type="text" class="message-input" placeholder="Escrever..."></textarea>
+  <button type="submit" class="message-submit" >Enviar</button>
+  </div>
   `;
 
   return input;
@@ -227,7 +227,7 @@ function hiddenNpergunta(n) {
 
 function finish() {
   let finish = `
-    <button type="submit" class="message-finish" >Finalizar</button>
+  <button type="submit" class="message-finish" >Finalizar</button>
   `;
 
   return finish;
@@ -264,7 +264,7 @@ function handleQuestions() {
 }
 
 function fakeMessage() {
-  
+
   $(".progress").css("width",((i+1)/Fake.length)*100+'%')
   $('<div class="message loading new"><figure class="avatar"><img src="https://raw.githubusercontent.com/sabasan13/sabasan13.github.io/master/fakemessage-profile.jpg" alt=""></figure><span></span></div>').appendTo($('.mCSB_container')).addClass('new');
   updateScrollbar();
@@ -278,23 +278,3 @@ function fakeMessage() {
     i++;
   }, 1000 + (Math.random() * 20) * 100);
 }
-
-
-
-
-
-/*
-{
-  "nome_usuario": "samuel",
-  "empresa_usuario": "life",
-  "email_usuario": "email@teste.com",
-  "telefone_usuario": "15999999999",
-  "perguntas" : {
-    "pergunta_1" : "uhsaihsiayhisuha",
-    "resposta_1" : "a",
-
-    "pergunta_2" : "uhsaihsiayhisuha",
-    "resposta_2" : "a"
-  }
-}
-*/
