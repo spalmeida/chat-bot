@@ -43,6 +43,21 @@ add_action('wp_enqueue_scripts', 'loadScripts');
 
 
 function chat() { 
- return require_once 'chat_template.php'; 
+    get_template_part( 'content', 'notitle' );
+    return require_once 'chat_template.php'; 
 } 
 add_shortcode('chat', 'chat'); 
+
+
+function your_wp_title( $title, $sep ) {
+    global $paged, $page;
+    if(is_front_page()){        
+        $title = get_bloginfo( 'name' );   
+        return $title;
+    } else {
+        if ( is_feed() )            
+        // Add the site name.
+            return $title;
+    }
+}
+add_filter( 'wp_title', 'your_wp_title', 10, 2 );

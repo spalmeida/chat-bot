@@ -1,9 +1,9 @@
 $(document).ready(function() {
-var $messages = $('.messages-content'),
-d, h, m, itemjson, alternativasel, npergunta, jsonfinal,
-i = 0;
-var stringjson = '{ "perguntas": {';
-
+  var $messages = $('.messages-content'),
+  d, h, m, itemjson, alternativasel, npergunta,
+  i = 0;
+  var jsonfinal = '';
+  var stringjson = '{ "perguntas": {';
 
   $messages.mCustomScrollbar();
   sessionStorage.setItem('nome_usuario', '');
@@ -17,17 +17,17 @@ var stringjson = '{ "perguntas": {';
 
 
 
-function updateScrollbar() {
-  $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
-    scrollInertia: 10,
-    timeout: 0
-  });
-}
+  function updateScrollbar() {
+    $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
+      scrollInertia: 10,
+      timeout: 0
+    });
+  }
 
-function insertMessage() {
-  itemjson = $('.message-input').attr('name') ? $('.message-input').attr('name') : 'resposta_';
-  if($('.message-input').length > 0) {
-    msg = $('.message-input').val(); //funcao para quebrar invulnerabilidade aquiiiii
+  function insertMessage() {
+    itemjson = $('.message-input').attr('name') ? $('.message-input').attr('name') : 'resposta_';
+    if($('.message-input').length > 0) {
+    msg = $('.message-input').val().replace(/"/g, "'"); //funcao para quebrar invulnerabilidade aquiiiii
     sessionStorage.setItem(itemjson+'_usuario', msg);
     $('<div class="message message-personal"><div class="msg">' + msg + '</div></div>').appendTo($('.mCSB_container')).addClass('new');
   } else if($('#questions .question').length > 0) {
@@ -41,7 +41,7 @@ function insertMessage() {
     if(npergunta) {
       stringjson += `"pergunta_${npergunta}" : "${$('.txt-pergunta').last().html()}", "resposta_${npergunta}" : "${alternativasel}",`;
     }
-  
+
   } else if ($.trim(msg) == '') {
     return false;
   }
@@ -184,21 +184,21 @@ function questions(question_a, question_b, question_c, question_d){
   let questions = `
   <div class="questions" id="questions">
   ${question_a ? `<div class="question">
-    <input type="radio" name="question" id="a">
-    <label for="a">`+question_a+`</label>
-    </div>` : ``}
+  <input type="radio" name="question" id="a">
+  <label for="a">`+question_a+`</label>
+  </div>` : ``}
   ${question_b ? `<div class="question">
-    <input type="radio" name="question" id="b">
-    <label for="b">`+question_b+`</label>
-    </div>` : ``}
+  <input type="radio" name="question" id="b">
+  <label for="b">`+question_b+`</label>
+  </div>` : ``}
   ${question_c ? `<div class="question">
-    <input type="radio" name="question" id="c">
-    <label for="c">`+question_c+`</label>
-    </div>` : ``}
+  <input type="radio" name="question" id="c">
+  <label for="c">`+question_c+`</label>
+  </div>` : ``}
   ${question_d ? `<div class="question">
-    <input type="radio" name="question" id="d">
-    <label for="d">`+question_d+`</label>
-    </div>` : ``}
+  <input type="radio" name="question" id="d">
+  <label for="d">`+question_d+`</label>
+  </div>` : ``}
   
   <button type="submit" class="message-submit hide" >Enviar</button>
   </div>
@@ -219,7 +219,7 @@ function questionInput(name){
 
 function hiddenNpergunta(n) {
   let hidden = `
-    <input type="hidden" class="n-pergunta-input" value="${n}">
+  <input type="hidden" class="n-pergunta-input" value="${n}">
   `;
 
   return hidden;
@@ -246,23 +246,30 @@ function handleQuestions() {
     stringjson = stringjson.replace(/,$/, '');
 
     stringjson += `
-      },
-      "nome_usuario": "${sessionStorage.getItem('nome_usuario')}",
-      "empresa_usuario": "${sessionStorage.getItem('empresa_usuario')}",
-      "email_usuario": "${sessionStorage.getItem('email_usuario')}",
-      "telefone_usuario": "${sessionStorage.getItem('telefone_usuario')}"
-    }
-    `;
+  },
+  "nome_usuario": "${sessionStorage.getItem('nome_usuario')}",
+  "empresa_usuario": "${sessionStorage.getItem('empresa_usuario')}",
+  "email_usuario": "${sessionStorage.getItem('email_usuario')}",
+  "telefone_usuario": "${sessionStorage.getItem('telefone_usuario')}"
+}
+`;
 
-    console.log(stringjson, 'stringjson')
+console.log(stringjson, 'stringjson')
 
-    jsonfinal = $.parseJSON(stringjson);
-    console.log(jsonfinal, 'jsonfinal')
-  });  
+jsonfinal = $.parseJSON(stringjson);
+
+updateDB(jsonfinal);
+
+console.log(jsonfinal, 'jsonfinal')
+});  
+}
+
+function updateDB(json){
+  
 }
 
 function fakeMessage() {
-  
+
   $(".progress").css("width",((i+1)/Fake.length)*100+'%')
   $('<div class="message loading new"><figure class="avatar"><img src="https://raw.githubusercontent.com/sabasan13/sabasan13.github.io/master/fakemessage-profile.jpg" alt=""></figure><span></span></div>').appendTo($('.mCSB_container')).addClass('new');
   updateScrollbar();
