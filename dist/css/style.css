@@ -274,7 +274,7 @@ a {
 .message-box textarea:focus:-webkit-placeholder {
   color: transparent;
 }
-.message-submit {
+.message-submit, .message-finish {
   position: absolute;
   z-index: 1;
   top: 0;
@@ -295,7 +295,7 @@ a {
   background-color: #E0712C;
   color: #fff;
 }
-.message-submit:hover {
+.message-submit:hover, .message-finish:hover {
   transform: scale(1.1);
 }
 .mCSB_scrollTools {
@@ -384,7 +384,7 @@ a {
 .question:not(:last-child) {
   margin-bottom: 10px;
 }
-.questions .message-submit {
+.questions .message-submit, .message-finish {
   position: absolute;
   bottom: -10px;
   top: unset;
@@ -427,4 +427,8 @@ a {
   .message.new:not(.message-personal) {
     margin-bottom: 55px;
   }
+}
+
+.pergunta-finish {
+  padding-bottom: 15px;
 }
