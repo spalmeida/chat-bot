@@ -19,8 +19,8 @@ html, body {
   src: url('../fonts/Montserrat-Bold.ttf');
   font-weight: 700;
 }
-body, button {
-  font-family: 'Montserrat';
+body, button, .entry-content, .entry-summary {
+  font-family: 'Montserrat' !important;
 }
 body {
   background: linear-gradient(135deg, rgba(224,113,44,1) 45%, rgba(63,116,129,1) 100%);
@@ -30,8 +30,11 @@ body {
   margin: 0;
 }
 a {
-  color: rgba(255, 255, 255, .7);
+  color: rgba(255, 255, 255, .7) !important;
   font-weight: 700;
+}
+a:hover {
+  text-decoration-style: inherit !important;
 }
 .hide {
   display: none !important;
@@ -57,7 +60,7 @@ display: none;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 990px;
-  max-width: calc(100% - 30px);
+  max-width: calc(100% - 30px) !important;
   height: 80vh;
   max-height: 500px;
   z-index: 2;
@@ -102,6 +105,9 @@ display: none;
   margin: 0;
   padding: 0;
   border: 2px solid rgba(255, 255, 255, 0.24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .chat-title .avatar img {
   width: 100%;
@@ -264,15 +270,16 @@ display: none;
 }
 .message-input {
   background: none;
-  border: none;
+  border: none !important;
   outline: none !important;
   resize: none;
-  color: rgba(255, 255, 255, .7);
+  color: rgba(255, 255, 255, .7) !important;
   font-size: 15px;
-  margin: 0;
+  margin: 0 !important;
   min-height: 25px;
   height: max-content;
   width: calc(100% - 80px);
+  font-family: monospace !important;
 }
 .message-box textarea:focus:-webkit-placeholder {
   color: transparent;
@@ -295,8 +302,8 @@ display: none;
   transition: all .2s;
   font-weight: 700;
   cursor: pointer;
-  background-color: #E0712C;
-  color: #fff;
+  background-color: #E0712C !important;
+  color: #fff !important;
 }
 .message-submit:hover, .message-finish:hover {
   transform: scale(1.1);
@@ -372,7 +379,7 @@ display: none;
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
-  display: block;
+  display: block !important;
   font-weight: 400;
 }
 .questions {
@@ -434,4 +441,8 @@ display: none;
 
 .pergunta-finish {
   padding-bottom: 15px;
+}
+
+#masthead, #main .entry-header, #main .entry-footer, .widget-area, #colophon {
+  display: none !important;
 }
