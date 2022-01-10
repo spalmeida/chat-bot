@@ -19,7 +19,7 @@ html, body {
   src: url('../fonts/Montserrat-Bold.ttf');
   font-weight: 700;
 }
-body, button, .entry-content, .entry-summary {
+body, button, .entry-content, .entry-summary, a {
   font-family: 'Montserrat' !important;
 }
 body {
@@ -61,7 +61,7 @@ display: none;
   transform: translate(-50%, -50%);
   width: 990px;
   max-width: calc(100% - 30px) !important;
-  height: 80vh;
+  height: 70vh;
   max-height: 500px;
   z-index: 2;
   overflow: hidden;
@@ -437,6 +437,91 @@ display: none;
   .message.new:not(.message-personal) {
     margin-bottom: 55px;
   }
+  #header .menu {
+    flex-direction: column;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    align-items: flex-start;
+    background-color: #fff;
+    width: 100%;
+    padding: 0 20px;
+    max-height: 0;
+    overflow-y: hidden;
+    transition: all .4s;
+  }
+  #header .menu li {
+    margin-bottom: 25px;
+  }
+  #header {
+    padding: 20px;
+  }
+  #header .menu li:last-child {
+    margin-bottom: 20px;
+  }
+  #header.open .menu {
+    max-height: 100vh;
+  }
+  #togglemenu {
+    font-size: 0;
+    border: none;
+    background-color: #174A5D;
+    border-radius: 3px;
+    position: relative;
+    width: 33px;
+    height: 33px;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  #togglemenu span, #togglemenu::before, #togglemenu::after {
+    display: block;
+    position: absolute;
+    width: calc(100% - 10px);
+    height: 3px;
+    background-color: #fff;
+    right: 5px;
+    border-radius: 6px;
+    transition: all .4s;
+  }
+  #togglemenu::before, #togglemenu::after {
+    content: "";
+  }
+  #togglemenu::before, #togglemenu span {
+    top: 9px;
+  }
+  #togglemenu span, #togglemenu::after {
+    bottom: 9px;
+  }
+  #togglemenu span {
+    margin: auto;
+  }
+  #header.open #togglemenu span {
+    right: 100%;
+  }
+  #header.open #togglemenu::before {
+    transform: rotate(45deg);
+    top: 15px;
+  }
+  #header.open #togglemenu::after {
+    transform: rotate(-45deg);
+    top: 15px;
+  }
+}
+
+@media (min-width: 993px) {
+  #header {
+    padding: 20px 0;
+  }
+  #header .menu {
+    align-items: center;
+    padding: 0;
+  }
+  #header .menu li:not(:last-child) {
+    margin-right: 30px;
+  }
+  #togglemenu {
+    display: none !important;
+  }
 }
 
 .pergunta-finish {
@@ -445,4 +530,62 @@ display: none;
 
 #masthead, #main .entry-header, #main .entry-footer, .widget-area, #colophon {
   display: none !important;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  margin: 0;
+  max-width: unset;
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 50%);
+  background-color: #fff;
+  z-index: 9;
+}
+
+#header > div {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#header .logo img {
+  height: 50px;
+}
+
+#header .menu {
+  display: flex;
+}
+
+#header .menu a {
+  color: #174A5D !important;
+  font-size: .8rem;
+  text-decoration: none;
+  transition: .4s;
+}
+
+#header .menu li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+#header .menu a:hover {
+  color: #F6C21E !important;
+  transform: scale(1.2);
+}
+
+#btn-consultor {
+  background-image: linear-gradient(30deg, #FE9801 0%, #1E7789 74%);
+  color: #fff !important;
+  font-weight: 600;
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 23%);
+  padding: 10px;
+  font-size: 13px;
+  text-decoration: none;
+  border-radius: 3px;
 }

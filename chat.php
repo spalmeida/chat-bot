@@ -11,7 +11,6 @@
 */
 
 require_once 'db/db.php';
-date_default_timezone_set('America/Sao_Paulo');
 
 function wpdocs_register_my_custom_menu_page() {
     add_menu_page(

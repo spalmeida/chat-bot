@@ -1,6 +1,10 @@
 <script type="text/javascript">
 
   $(document).ready(function() {
+    $('#togglemenu').on('click', function(){
+      $('#header').toggleClass('open');
+    });
+
     var $messages = $('.messages-content'),
     d, h, m, itemjson, alternativasel, npergunta,
     i = 0;
@@ -27,31 +31,22 @@
     }
 
     function insertMessage() {
-      itemjson = $('.message-input').attr('name') ? $('.message-input').attr('name') : 'resposta_';
       if($('.message-input').length > 0) {
+        msg = $('.message-input').val().replace(/"/g, "'");
+        sessionStorage.setItem($('.message-input').attr('name')+'_usuario', msg);
 
-            msg = tratamento($('.message-input').val().replace(/"/g, "'")); //
-            console.log(msg);
-            sessionStorage.setItem(itemjson+'_usuario', msg);
+        tratamento(msg, 'textarea');
+      } else if($('#questions .question').length > 0) {
+        msg = $('#questions input:checked').siblings('label').html();
+        alternativasel = $('#questions input:checked').attr('id');
+        npergunta = $('.n-pergunta-input').last().val();
 
-            $('<div class="message message-personal"><div class="msg">' + msg + '</div></div>').appendTo($('.mCSB_container')).addClass('new');
-          } else if($('#questions .question').length > 0) {
-            alternativasel = $('#questions input:checked').attr('id');
+        tratamento(msg, 'alternativas', alternativasel, npergunta);
+      } else if ($.trim(msg) == '') {
+        return false;
+      }
 
-                msg = $('#questions input:checked').siblings('label').html(); //
-                $('<div class="message message-personal" alternativa="'+alternativasel+'">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-                
-                npergunta = $('.n-pergunta-input').last().val();
-
-                if(npergunta) {
-                  stringjson += `"pergunta_${npergunta}" : "${$('.txt-pergunta').last().html()}", "resposta_${npergunta}" : "${alternativasel}",`;
-                }
-
-              } else if ($.trim(msg) == '') {
-                return false;
-              }
-
-              setDate();
+              reloadTime();
           //$('.message-input').val(null);
           $('.message-box').remove();
           $('#questions').remove();
@@ -266,18 +261,34 @@
         }
 
 
-        function tratamento(msg){
-          let resposta = '';
+        function tratamento(msg, tipo, altsel, nperg){
           $.ajax({
             url: "<?= plugins_url( 'chat/includes/tratamento.php' ) ?>",
             data: {msg},
             success: function(result) {
-              console.log(result);
-              return result;
+              if(tipo == 'textarea') {
+                $('<div class="message message-personal"><div class="msg">' + result + '</div></div>').appendTo($('.mCSB_container')).addClass('new');
+              } else {
+                $('<div class="message message-personal" alternativa="'+altsel+'">' + result + '</div>').appendTo($('.mCSB_container')).addClass('new');                 
+
+                if(nperg) {
+                  stringjson += `"pergunta_${nperg}" : "${$('.txt-pergunta').last().html()}", "resposta_${nperg}" : "${altsel}",`;
+                }
+              }
             }
           });
-          console.log('no success');
-          //return resposta;
+        }
+
+
+        function reloadTime(){
+          var time = 'time';
+          $.ajax({
+            url: "<?= plugins_url( 'chat/includes/tratamento.php' ) ?>",
+            data: {time},
+            success: function(result) {
+              $('<div class="timestamp">' + result + '</div>').appendTo($('.message:last'));
+            }
+          });
         }
 
         function updateDB(json){
@@ -294,7 +305,7 @@
             $('.message.loading').remove();
             $('<div class="message new"><figure class="avatar"><img src="https://raw.githubusercontent.com/sabasan13/sabasan13.github.io/master/fakemessage-profile.jpg" alt=""></figure><div class="pergunta">' + Fake[i] + '</div></div>').appendTo($('.mCSB_container')).addClass('new');
             handleQuestions();
-            setDate();
+            reloadTime();
             updateScrollbar();
             i++;
           }, 1000 + (Math.random() * 20) * 100);
