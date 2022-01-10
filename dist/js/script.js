@@ -7,26 +7,26 @@ var stringjson = '{ "perguntas": {';
 $(window).load(function() {
   $messages.mCustomScrollbar();
 
-    sessionStorage.setItem('nome_usuario', '');
-    sessionStorage.setItem('empresa_usuario', '');
-    sessionStorage.setItem('email_usuario', '');
-    sessionStorage.setItem('telefone_usuario', '');
+  sessionStorage.setItem('nome_usuario', '');
+  sessionStorage.setItem('empresa_usuario', '');
+  sessionStorage.setItem('email_usuario', '');
+  sessionStorage.setItem('telefone_usuario', '');
 
-    setTimeout(function() {
-      fakeMessage();
-    }, 100);
+  setTimeout(function() {
+    fakeMessage();
+  }, 100);
+});
+
+function updateScrollbar() {
+  $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
+    scrollInertia: 10,
+    timeout: 0
   });
+}
 
-  function updateScrollbar() {
-    $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
-      scrollInertia: 10,
-      timeout: 0
-    });
-  }
-
-  function insertMessage() {
-    itemjson = $('.message-input').attr('name') ? $('.message-input').attr('name') : 'resposta_';
-    if($('.message-input').length > 0) {
+function insertMessage() {
+  itemjson = $('.message-input').attr('name') ? $('.message-input').attr('name') : 'resposta_';
+  if($('.message-input').length > 0) {
     msg = $('.message-input').val(); //funcao para quebrar invulnerabilidade aquiiiii
     sessionStorage.setItem(itemjson+'_usuario', msg);
     $('<div class="message message-personal"><div class="msg">' + msg + '</div></div>').appendTo($('.mCSB_container')).addClass('new');
@@ -242,8 +242,6 @@ function handleQuestions() {
     insertMessage(); 
   });  
 
-
-  ////// continuar daquiiiiiii - criar inputs hidden com o número da pergunta pra saber qual que é pra montar o json
   $('.message-finish').on('click', function() {   
     stringjson = stringjson.replace(/,$/, '');
 
@@ -264,7 +262,7 @@ function handleQuestions() {
 }
 
 function fakeMessage() {
-
+  
   $(".progress").css("width",((i+1)/Fake.length)*100+'%')
   $('<div class="message loading new"><figure class="avatar"><img src="https://raw.githubusercontent.com/sabasan13/sabasan13.github.io/master/fakemessage-profile.jpg" alt=""></figure><span></span></div>').appendTo($('.mCSB_container')).addClass('new');
   updateScrollbar();
