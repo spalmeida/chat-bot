@@ -1,12 +1,11 @@
+$(document).ready(function() {
 var $messages = $('.messages-content'),
 d, h, m, itemjson, alternativasel, npergunta, jsonfinal,
 i = 0;
-
 var stringjson = '{ "perguntas": {';
 
-$(window).load(function() {
-  $messages.mCustomScrollbar();
 
+  $messages.mCustomScrollbar();
   sessionStorage.setItem('nome_usuario', '');
   sessionStorage.setItem('empresa_usuario', '');
   sessionStorage.setItem('email_usuario', '');
@@ -15,7 +14,8 @@ $(window).load(function() {
   setTimeout(function() {
     fakeMessage();
   }, 100);
-});
+
+
 
 function updateScrollbar() {
   $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
@@ -276,3 +276,4 @@ function fakeMessage() {
     i++;
   }, 1000 + (Math.random() * 20) * 100);
 }
+});

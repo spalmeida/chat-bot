@@ -28,3 +28,6 @@
 	<p>Gerar download de respostas "Chat Bot"</p>
 	<button class="button-download" id="button-download">DOWNLOAD RELATÓRIOS</button>
 </section>
+	<section>
+		<p>Shortcode: [chat]</p>
+	</section>

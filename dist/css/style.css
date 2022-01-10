@@ -36,6 +36,9 @@ a {
 .hide {
   display: none !important;
 }
+.page .entry-title {
+display: none;
+}
 /*
 .bg {
   width: 100%;

@@ -15,14 +15,16 @@ date_default_timezone_set('America/Sao_Paulo');
 
 function loadScripts() {
 
+    $version = '2.2';
+
     /*JS*/
-    wp_enqueue_script( 'js-jquery', plugins_url( 'dist/js/jquery.min.js', __FILE__ ), array(), '1.7' );
-    wp_enqueue_script( 'js-script', plugins_url( 'dist/js/script.js', __FILE__ ), array(), '1.7' );
-    wp_enqueue_script( 'js-scrollbar', plugins_url( 'dist/js/scrollbar.concat.min.js', __FILE__ ), array(), '1.7' );
+    wp_enqueue_script( 'js-jquery', plugins_url( 'dist/js/jquery.min.js', __FILE__ ), array(), $version );
+    wp_enqueue_script( 'js-scrollbar', plugins_url( 'dist/js/scrollbar.concat.min.js', __FILE__ ), array(), $version );
+    wp_enqueue_script( 'js-script', plugins_url( 'dist/js/script.js', __FILE__ ), array(), $version );
 
     /*CSS*/
-    wp_enqueue_style( 'css-scrollbar',plugin_dir_url(__FILE__) . 'dist/css/scrollbar.min.css', get_stylesheet_uri() , '1.7');
-    wp_enqueue_style( 'css-style',plugin_dir_url(__FILE__) . 'dist/css/style.css', get_stylesheet_uri() , '1.7');
+    wp_enqueue_style( 'css-style',plugin_dir_url(__FILE__) . 'dist/css/style.css', get_stylesheet_uri() , $version);
+    wp_enqueue_style( 'css-scrollbar',plugin_dir_url(__FILE__) . 'dist/css/scrollbar.min.css', get_stylesheet_uri() , $version);
 }
 
 function wpdocs_register_my_custom_menu_page() {
