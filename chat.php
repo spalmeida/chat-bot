@@ -35,7 +35,7 @@ function loadScripts() {
     /*JS*/
     wp_enqueue_script( 'js-jquery', plugins_url( 'dist/js/jquery.min.js', __FILE__ ), array(), $version );
     wp_enqueue_script( 'js-scrollbar', plugins_url( 'dist/js/scrollbar.concat.min.js', __FILE__ ), array(), $version );
-    wp_enqueue_script( 'js-script', plugins_url( 'dist/js/script.js', __FILE__ ), array(), $version );
+    wp_enqueue_script( 'js-script', plugins_url( 'dist/js/script.php', __FILE__ ), array(), $version );
 
     /*CSS*/
     wp_enqueue_style( 'css-style',plugin_dir_url(__FILE__) . 'dist/css/style.css', get_stylesheet_uri() , $version);
@@ -45,6 +45,6 @@ add_action('wp_enqueue_scripts', 'loadScripts');
 
 
 function chat_template() { 
- require_once 'chat_template.php'; 
+ require_once 'chat_template.php';
 } 
 add_shortcode('chat', 'chat_template'); 
