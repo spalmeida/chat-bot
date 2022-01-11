@@ -23,7 +23,7 @@ body, button, .entry-content, .entry-summary, a {
   font-family: 'Montserrat' !important;
 }
 body {
-  background: linear-gradient(135deg, rgba(224,113,44,1) 45%, rgba(63,116,129,1) 100%);
+  background: linear-gradient(135deg, rgba(224,113,44,1) 45%, rgba(63,116,129,1) 100%) !important;
   font-size: 12px;
   line-height: 1.3;
   overflow: hidden;
@@ -75,6 +75,9 @@ display: none;
   font-size: 13px;
   margin: 0;
   padding: 0;
+}
+.chat-title h1 {
+  color: #fff;
 }
 .chat-title h2 {
   color: rgba(255, 255, 255, .5);
@@ -273,24 +276,24 @@ display: none;
   color: transparent;
 }
 .message-submit, .message-finish {
-  position: absolute;
+  position: absolute !important;
   z-index: 1;
-  top: 0;
-  bottom: 0;
+  top: 0 !important;
+  bottom: 0 !important;
   height: max-content;
   margin: auto;
   right: 10px;
   border: none;
-  font-size: 15px;
+  font-size: 15px !important;
   text-transform: uppercase;
-  line-height: 1;
-  padding: 6px 10px;
-  border-radius: 10px;
+  line-height: 1 !important;
+  padding: 6px 10px !important;
+  border-radius: 10px !important;
   outline: none !important;
   transition: all .2s;
-  font-weight: 700;
+  font-weight: 700 !important;
   cursor: pointer;
-  background-color: #E0712C !important;
+  background: #E0712C !important;
   color: #fff !important;
 }
 .message-submit:hover, .message-finish:hover {
@@ -381,8 +384,8 @@ display: none;
 }
 .questions .message-submit, .message-finish {
   position: absolute;
-  bottom: -10px;
-  top: unset;
+  bottom: -10px !important;
+  top: unset !important;
 }
 .progress-bar, .progress {
   border-radius: 50px;
