@@ -1,7 +1,33 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    //eraseCookie('chat_info');
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    if(getCookie('chat_enviado') != '') {
+      setTimeout(function(){
+        eraseCookie('chat_info');
+        $(".progress").css("width", '100%');
+        $('<div class="message new"><figure class="avatar"><img src="https://raw.githubusercontent.com/sabasan13/sabasan13.github.io/master/fakemessage-profile.jpg" alt=""></figure><div class="pergunta">Chat enviado!</div></div>').appendTo($('.mCSB_container')).addClass('new');
+      }, 2000)
+    } else {      
+      setTimeout(function() {
+        fakeMessage();
+      }, 100);
+    }
 
     function eraseCookie(name) {   
       document.cookie = name+'=; Max-Age=-99999999;';  
@@ -22,10 +48,6 @@
     sessionStorage.setItem('empresa_usuario', '');
     sessionStorage.setItem('email_usuario', '');
     sessionStorage.setItem('telefone_usuario', '');
-
-    setTimeout(function() {
-      fakeMessage();
-    }, 100);
 
     function updateScrollbar() {
       $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
@@ -260,6 +282,10 @@
         jsonfinal = $.parseJSON(stringjson);
 
         document.cookie = 'chat_info=' + JSON.stringify(jsonfinal);
+
+        document.cookie = 'chat_enviado=1';
+
+        location.reload();
         
        // updateDB(stringjson);
 
