@@ -7,6 +7,6 @@ $time = filter_input(INPUT_GET, "time", FILTER_SANITIZE_STRING);
 
 if($msg != '') {
     echo strip_tags($msg);
-} else {
+}else if($time != ''){
     echo date('H:i:s');
 }

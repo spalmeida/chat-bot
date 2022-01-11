@@ -1,6 +1,12 @@
 <script type="text/javascript">
-
   $(document).ready(function() {
+
+    //eraseCookie('chat_info');
+
+    function eraseCookie(name) {   
+      document.cookie = name+'=; Max-Age=-99999999;';  
+    }
+
     $('#togglemenu').on('click', function(){
       $('#header').toggleClass('open');
     });
@@ -9,7 +15,7 @@
     d, h, m, itemjson, alternativasel, npergunta,
     i = 0;
     var jsonfinal = '';
-    var stringjson = '{ "perguntas": {';
+    var stringjson = '[{ "perguntas": {';
 
     $messages.mCustomScrollbar();
     sessionStorage.setItem('nome_usuario', '');
@@ -20,8 +26,6 @@
     setTimeout(function() {
       fakeMessage();
     }, 100);
-
-
 
     function updateScrollbar() {
       $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
@@ -46,7 +50,7 @@
         return false;
       }
 
-              reloadTime();
+      reloadTime();
           //$('.message-input').val(null);
           $('.message-box').remove();
           $('#questions').remove();
@@ -85,7 +89,7 @@
         hiddenNpergunta('3')+
         questions('a) Não utilizamos essa prática','b) A prática está sendo implementada nos processos','c) A empresa usa people analytics, mas precisa evoluir','d) Já implementamos a prática do people analytics em nossa gestão de desempenho e funciona perfeitamente'),
 
-        '<div class="txt-pergunta">4: Na sua empresa, os líderes e cargos estratégicos são elegíveis ao processo de gestão de desempenho?</div>'+
+       '<div class="txt-pergunta">4: Na sua empresa, os líderes e cargos estratégicos são elegíveis ao processo de gestão de desempenho?</div>'+
         hiddenNpergunta('4')+
         questions('a) Não elegemos líderes e cargos estratégicos com a ajuda da gestão de desempenho','b) Estamos implementando essa opção para tornar cargos estratégicos elegíveis ao processo de gestão de desempenho','c) Alguns cargos estratégicos e líderes são elegíveis ao processo de gestão de desempenho. Sabemos que precisamos evoluir neste ponto','d) Sim, os cargos estratégicos e líderes são elegíveis ao processo de gestão de desempenho e a prática já demonstra resultados positivos'),
 
@@ -251,13 +255,15 @@
           "email_usuario": "${sessionStorage.getItem('email_usuario')}",
           "telefone_usuario": "${sessionStorage.getItem('telefone_usuario')}"
         }
-        `;
+        ]`;
 
         jsonfinal = $.parseJSON(stringjson);
 
-        updateDB(jsonfinal);
+        document.cookie = 'chat_info=' + JSON.stringify(jsonfinal);
+        
+       // updateDB(stringjson);
 
-      });  
+     });  
         }
 
 
@@ -287,12 +293,9 @@
             data: {time},
             success: function(result) {
               $('<div class="timestamp">' + result + '</div>').appendTo($('.message:last'));
+              time = '';
             }
           });
-        }
-
-        function updateDB(json){
-
         }
 
         function fakeMessage() {
