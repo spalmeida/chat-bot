@@ -11,6 +11,7 @@
   */
 
   require_once 'db/db.php';
+  require_once 'plugin-update/plugin-update-checker.php';
 
   /*
   |--------------------------------------------------------------------------
@@ -51,6 +52,26 @@ function loadScripts() {
     wp_enqueue_style( 'css-scrollbar',plugin_dir_url(__FILE__) . 'dist/css/scrollbar.min.css', get_stylesheet_uri() , $version);
 }
 add_action('wp_enqueue_scripts', 'loadScripts');
+
+function plugin_update() {
+    if ( ! is_admin() || ! class_exists( 'Puc_v4_Factory' ) ) {
+        return;
+    }
+
+    $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+        'https://github.com/worldvisual/chat-bot/',
+        __FILE__,
+        'unique-plugin-or-theme-slug'
+    );
+    
+    // (Opcional) If you're using a private repository, specify the access token like this:
+    $myUpdateChecker->setAuthentication('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');
+
+    // (Opcional) Set the branch that contains the stable release.
+    $myUpdateChecker->setBranch('main');
+}
+
+add_action( 'admin_init', 'plugin_update' );
 
 /*
 |--------------------------------------------------------------------------
