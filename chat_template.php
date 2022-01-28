@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head> 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <?php require 'dist/js/script.php' ?>
-</head>
-<body>
   <header id="header">
     <div class="container">
       <a href="https://desenvolvimento.agencia.life/actio" class="logo" target="_blank">
@@ -34,6 +26,3 @@
     </div>    
     <div class="progress-bar"><div class="progress"></div></div>
   </div>
-
-</body>
-</html>
