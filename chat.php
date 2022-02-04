@@ -4,14 +4,15 @@
  * Plugin Name: Chat BOT
  * Plugin URI: https://agencia.life
  * Description: Chat BOT - Agência Life.
- * Version: 1.1.1
+ * Version: 1.1.3
  * Author: Agência Life
  * Author URI: https://agencia.life
  * License: GPL2
  */
-//teste
+
+//require_once 'plugin-update/plugin-update-checker.php';
 require_once 'db/db.php';
-require_once 'plugin-update/plugin-update-checker.php';
+
 
 /*
   |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ add_action('admin_menu', 'wpdocs_register_my_custom_menu_page');
 
 function loadScripts()
 {
-    $version = '2.4';
+    $version = '2.9.2';
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ function loadScripts()
     |--------------------------------------------------------------------------
     */
     wp_enqueue_script('js-jquery', plugins_url('dist/js/jquery.min.js', __FILE__), array(), $version);
-    wp_enqueue_script('js-scrollbar', plugins_url('dist/js/scrollbar.concat.min.js', __FILE__), array(), $version);
+    wp_enqueue_script('js-script', plugins_url('dist/js/scrollbar.concat.min.js', __FILE__), array(), $version);
     wp_enqueue_script('js-script', plugins_url('dist/js/script.php', __FILE__), array(), $version);
 
     /*
@@ -55,7 +56,7 @@ function loadScripts()
 }
 add_action('wp_enqueue_scripts', 'loadScripts');
 
-function plugin_update()
+function my_plugin_update_checker_setting()
 {
     if (!is_admin() || !class_exists('Puc_v4_Factory')) {
         return;
@@ -74,7 +75,7 @@ function plugin_update()
     $myUpdateChecker->setBranch('main');
 }
 
-add_action('admin_init', 'plugin_update');
+add_action('admin_init', 'my_plugin_update_checker_setting');
 
 /*
 |--------------------------------------------------------------------------
