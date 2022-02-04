@@ -4,7 +4,7 @@
  * Plugin Name: Chat BOT
  * Plugin URI: https://agencia.life
  * Description: Chat BOT - Agência Life.
- * Version: 1.1.4
+ * Version: 1.1.5
  * Author: Agência Life
  * Author URI: https://agencia.life
  * License: GPL2
