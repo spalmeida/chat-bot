@@ -12,6 +12,24 @@
 
 //require_once 'plugin-update/plugin-update-checker.php';
 require_once 'db/db.php';
+require_once 'plugin-update/plugin-update-checker.php';
+
+if (is_admin()) { // note the use of is_admin() to double check that this is happening in the admin
+    $config = array(
+        'slug' => plugin_basename(__FILE__), // this is the slug of your plugin
+        'proper_folder_name' => 'chat-bot', // this is the name of the folder your plugin lives in
+        'api_url' => 'https://api.github.com/repos/worldvisual/chat-bot', // the GitHub API url of your GitHub repo
+        'raw_url' => 'https://raw.github.com/worldvisual/chat-bot/master', // the GitHub raw url of your GitHub repo
+        'github_url' => 'https://github.com/worldvisual/chat-bot', // the GitHub url of your GitHub repo
+        'zip_url' => 'https://github.com/worldvisual/chat-bot/zipball/master', // the zip url of the GitHub repo
+        'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
+        'requires' => '3.0', // which version of WordPress does your plugin require?
+        'tested' => '3.3', // which version of WordPress is your plugin tested up to?
+        'readme' => 'README.md', // which file to use as the readme for the version number
+        'access_token' => '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', // Access private repositories by authorizing under Plugins > GitHub Updates when this example plugin is installed
+    );
+    new WP_GitHub_Updater($config);
+}
 
 
 /*
@@ -56,26 +74,7 @@ function loadScripts()
 }
 add_action('wp_enqueue_scripts', 'loadScripts');
 
-function my_plugin_update_checker_setting()
-{
-    if (!is_admin() || !class_exists('Puc_v4_Factory')) {
-        return;
-    }
 
-    $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-        'https://github.com/worldvisual/chat-bot/',
-        __FILE__,
-        'unique-plugin-or-theme-slug'
-    );
-
-    // (Opcional) If you're using a private repository, specify the access token like this:
-    $myUpdateChecker->setAuthentication('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');
-
-    // (Opcional) Set the branch that contains the stable release.
-    $myUpdateChecker->setBranch('main');
-}
-
-add_action('admin_init', 'my_plugin_update_checker_setting');
 
 /*
 |--------------------------------------------------------------------------
