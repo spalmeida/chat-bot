@@ -24,7 +24,7 @@ $config = array(
     'requires' => '1.0',
     'tested' => '3.3',
     'readme' => 'README.md',
-    'access_token' => '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',
+    'access_token' => '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',
 );
 new WP_GitHub_Updater($config);
 
