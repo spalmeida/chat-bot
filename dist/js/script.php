@@ -10,11 +10,9 @@
     let $messages = $('.messages-content'),
       i = 0;
     let jsonfinal = '';
-    let json_gerado_update = $('#json-gerado').attr("data-json");
 
     if (!get_cookie('chat_iniciado')) {
       set_cookie('chat_iniciado', '0');
-      set_cookie('chat_json', '---');
     }
 
 
@@ -73,6 +71,18 @@
 
     function finaliza_chat() {
       set_cookie('chat_status', 'finalizado');
+      $.ajax({
+        url: "<?= plugins_url('chat-bot/includes/tratamento.php') ?>",
+        type: 'GET',
+        dataType: "json",
+        data: {
+          finalizar_chat: $('#json-gerado').attr("data-json")
+        },
+        success: function(result) {
+          console.log(result);
+
+        }
+      });
     }
 
     if (get_cookie('chat_iniciado')) {
@@ -137,13 +147,13 @@
         msg = $('.message-input').val().replace(/"/g, "'");
         sessionStorage.setItem($('.message-input').attr('name') + '_usuario', msg);
 
-        user_mensagens(step, msg, json_gerado_update);
+        user_mensagens(step, msg);
 
       } else if ($('.questions .question').length > 0) {
 
         msg = $('.questions input:checked').siblings('label').html();
 
-        user_mensagens(step, msg, json_gerado_update);
+        user_mensagens(step, msg);
       } else if ($.trim(msg) == '') {
         return false;
       }
@@ -156,7 +166,7 @@
       }, 1000 + (Math.random() * 20) * 100);
     }
 
-    function user_mensagens(step, msg, json_gerado_update) {
+    function user_mensagens(step, msg) {
 
       $.ajax({
         url: "<?= plugins_url('chat-bot/includes/tratamento.php') ?>",
@@ -165,15 +175,15 @@
         data: {
           step,
           msg,
-          json_gerado: get_cookie('chat_json')
+          json_gerado: $('#json-gerado').attr("data-json")
         },
         success: function(result) {
 
-          console.log(get_cookie('chat_json'));
           $('<div class="message message-personal"><div class="msg">' + result['msg'] + '</div></div>').appendTo($('.mCSB_container')).addClass('new');
           reload_time();
-          set_cookie('chat_json', result['json_gerado']);
-          //$('#json-gerado').attr("data-json", result['json_gerado']);
+          $('#json-gerado').attr("data-json", result['json_gerado']);
+          console.log($('#json-gerado').attr("data-json"));
+
         }
       });
     }
