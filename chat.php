@@ -11,7 +11,43 @@
  */
 
 require_once 'functions/functions.php';
-require_once 'db/db.php';
+
+/* ON ACTIVE */
+function pluginprefix_activate()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "chat_bot";
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $user_respostas = "CREATE TABLE $table_name (
+ 	id mediumint(9) NOT NULL AUTO_INCREMENT,
+ 	time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+ 	nome_usuario tinytext NOT NULL,
+ 	email_usuario tinytext NOT NULL,
+ 	empresa_usuario tinytext NOT NULL,
+ 	telefone_usuario tinytext NOT NULL,
+ 	json_respostas json NOT NULL,
+ 	PRIMARY KEY  (id)
+ ) $charset_collate;";
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($user_respostas);
+}
+register_activation_hook(__FILE__, 'pluginprefix_activate');
+
+/* ON DEACTIVE */
+function deactivation_plugin_database_tables()
+{
+    global $wpdb;
+    $tableArray = [
+        $wpdb->prefix . "chat_bot_perguntas",
+        $wpdb->prefix . "chat_bot",
+    ];
+
+    foreach ($tableArray as $tablename) {
+        $wpdb->query("DROP TABLE IF EXISTS $tablename");
+    }
+}
+register_deactivation_hook(__FILE__, 'deactivation_plugin_database_tables');
 
   if(isset($_POST["chatbot_useremail"]) || isset($_POST["chatbot_status"]) && !isset($_COOKIE['reinicia_chat'])){
     setcookie("chatbot_useremail", $_POST["chatbot_useremail"]);
