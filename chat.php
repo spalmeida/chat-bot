@@ -121,7 +121,7 @@ function chat_template()
     $require_page = '';
     if(isset($_COOKIE['chatbot_status']) && isset($_COOKIE['chatbot_useremail'])){
         if($_COOKIE['chatbot_status'] == 'finalizado' && $_COOKIE['chatbot_useremail'] != ''){
-            $require_page = 'resultados.php';
+            $require_page = 'dist/resultados.php';
         }else{
             $require_page = 'chat_template.php';
         }
