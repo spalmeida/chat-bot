@@ -10,14 +10,6 @@
 |--------------------------------------------------------------------------
 */
 
-.relatorio{
-  padding-top: 20px;
-  text-align: center;
-}
-
-.relatorio .button-download:hover{
-  background-color: #16a085;
-}
 .resultados{
   padding: 20px;
   margin-right: 20px;
@@ -460,10 +452,22 @@
 
 /* --------------------------------------------------------------------------------------------------- */
 
-#resultado {
+.custom-container {
 	width: 990px;
 	margin: 0 auto;
 	max-width: calc(100% - 30px);
+}
+
+#resultado {
+    background: linear-gradient(118.6deg, #FF9900 0%, #F79D12 7.34%, #E3A842 22.93%, #C2BA8E 44.03%, #B3C2B2 54.12%, #7EACA6 62.37%, #48969B 72.46%, #218692 80.72%, #097C8D 87.14%, #00788B 91.72%);
+    padding: 50px 0;
+}
+
+#resultado > div {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 50px;
+    box-shadow: 0 5px 30px rgb(0 0 0 / 20%);
 }
 
 #resultado .itens {
@@ -474,7 +478,12 @@
 #resultado .item.resgeral {
 	order: -1;
 	margin-bottom: 15px;
-	border: 1px solid #b3b3b3;
+    border: 1px solid #e0712c;
+}
+
+#resultado .item.resgeral .tema {
+    color: #e0712c;
+    font-size: 20px;
 }
 
 #resultado .resumo, #resultado .item .texto {
@@ -587,7 +596,8 @@
 
 #resultado .buttons {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+	justify-content: flex-end;
     margin: 20px 0;
 }
 
@@ -600,7 +610,11 @@
     font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
-    transition: all .2s;
+    transition: all .4s;
+}
+
+.responder_novamente {
+	display: none;
 }
 
 #resultado .buttons button:not(:disabled) {
@@ -621,6 +635,95 @@
 
 #resultado .nome {
     text-transform: capitalize;
+}
+
+#resultado .graphBox {
+	width: 500px;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+.header-chat-life {
+    background: rgba(255, 250, 250, 0.63);
+    padding: 15px 0;
+}
+
+#resultado .header-chat-life {
+    margin: -50px 0 50px;
+}
+
+#resultado .header-chat-life:last-child {
+    margin: 50px 0 -50px;
+}
+
+.header-chat-life > div, .header-chat-life > div > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-chat-life .btn {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FFFAFA;
+    padding: 10px 15px;
+    margin: 0 30px;
+    transition: all .4s;
+    text-align: center;
+}
+
+.header-chat-life .btn.lift {
+    background: #FF9900;
+}
+
+.header-chat-life .btn.actio {
+    background: #56BC76;
+}
+
+.header-chat-life .btn:hover {
+    transform: scale(1.1);
+}
+
+#resultado .topo, #resultado .topo > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#resultado .topo h1 {
+    margin: 0;
+}
+
+#resultado .topo {
+    margin: 0 0 20px;
+}
+
+#resultado .topo .lift img {
+    max-height: 52px;
+    margin-right: 20px;
+}
+
+#resultado .topo .actio img {
+    max-height: 33px;
+    margin-bottom: 10px;
+}
+
+.chat-bot-life .header-chat-life {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.chat-bot-life .header-chat-life:last-child {
+    bottom: 0;
+    top: unset;
 }
 
 @media only screen and (max-width: 990px) {
@@ -662,6 +765,42 @@
     #resultado .item {
         padding: 15px;
     }
+
+	.header-chat-life > div {
+		flex-direction: column;
+	}
+
+	.header-chat-life .btn {
+		margin: 0;
+		padding: 10px;
+	}
+
+	.header-chat-life > div > div {
+		width: 100%;
+	}
+
+	#resultado > div {
+		padding: 25px;
+	}
+
+	#resultado .item .top i {
+		bottom: unset;
+	}
+	
+	#resultado .topo {
+		flex-direction: column-reverse;
+		align-items: flex-end;
+	}
+
+	#resultado .topo h1 {
+		margin-top: 10px;
+		width: 100%;
+		text-align: left;
+	}
+	
+	.chat-bot-life {
+		min-height: 910px;
+	}
 }
 
 @media print {
@@ -680,4 +819,44 @@
     #resultado .item .texto {
         display: block !important;
     }
+	
+	#resultado {
+		padding: 0;
+		background: #fff;
+	}
+	
+	#resultado > div {
+		border-radius: 0;
+		box-shadow: none;
+	}
+	
+	.header-chat-life {
+		display: none;
+	}
 }    
+
+
+
+#limpar-cookies {
+    border-radius: 13px;
+    box-shadow: 26px 26px 53px #d9d9d9, -26px -26px 53px #ffffff;
+    border: none;
+    padding: 10px;
+    margin: 10px 20px;
+    background-color: #fff;
+    color: #1d2327;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .4s;
+}
+
+#limpar-cookies:hover {
+    transform: scale(1.1);
+}
+
+.chat-bot-life {
+    background: linear-gradient(118.6deg, #FF9900 0%, #F79D12 7.34%, #E3A842 22.93%, #C2BA8E 44.03%, #B3C2B2 54.12%, #7EACA6 62.37%, #48969B 72.46%, #218692 80.72%, #097C8D 87.14%, #00788B 91.72%);
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}

@@ -22,7 +22,7 @@ $perguntas = [
         /*2------------------------------------------------------------------------------------*/
         [
             "id" => "",
-            "texto" => "Que legal! É um prazer te conhecer. Agora vamos dar início ao diagnóstico de maturidade do RH da sua empresa. Para isso, responda as perguntas com a opção que melhor se enquadra com a sua realidade, ok? Todas as informações serão protegidas de acordo com as regras da LGPD e você pode acompanhar nossa <a target='_blank' href='https://actiosoftware.com/privacidade/'>Política de Privacidade</a>",
+            "texto" => "Que legal! É um prazer te conhecer. Agora vamos dar início ao diagnóstico de maturidade da Gestão de Desempenho da sua empresa. Para isso, responda as perguntas com a opção que melhor se enquadra com a sua realidade, ok? Todas as informações serão protegidas de acordo com as regras da LGPD e você pode acompanhar nossa <a target='_blank' href='https://actiosoftware.com/privacidade/'>Política de Privacidade</a>",
             "tema" => "lgpd",
             "input_name" => "lgpd",
             "alternativas" => [
