@@ -5,6 +5,13 @@ $(document).ready(function () {
   |--------------------------------------------------------------------------
   */
 
+	if (get_cookie("chatbot_visualizando") == '1') {
+    	set_cookie("chatbot_visualizando", "0");
+		location.reload();
+  	}
+
+	
+
   let stepatual = $("#step-count").text();
   let $messages = $(".messages-content"),
     i = 0;

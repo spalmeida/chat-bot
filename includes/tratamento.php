@@ -13,13 +13,13 @@ require_once 'perguntas.php';
 function monta_json($step, $msg, $perguntas, $json_gerado = ''){
 
     $step_atual = $step - 1;
-    $texto_pergunta = strip_tags($perguntas['perguntas'][$step]['texto']);
+    $texto_pergunta = strip_tags($perguntas['perguntas'][$step_atual]['texto']);
     $mensagem = $msg;
-    $tema = $perguntas['perguntas'][$step - 1]['tema'];
-    if (empty($perguntas['perguntas'][$step - 1]['alternativas'])) {
+    $tema = $perguntas['perguntas'][$step_atual]['tema'];
+    if (empty($perguntas['perguntas'][$step_atual]['alternativas'])) {
         $peso = '';
     } else {
-        $peso = $perguntas['perguntas'][$step - 1]['alternativas'][$msg[0]]['peso'];
+        $peso = $perguntas['perguntas'][$step_atual]['alternativas'][$msg[0]]['peso'];
     }
 
     /*

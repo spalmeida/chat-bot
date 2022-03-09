@@ -1,22 +1,19 @@
-<?php 
+<?php
 
 add_action('wp_ajax_tratamento', 'ajax_tratamento');
 add_action('wp_ajax_nopriv_tratamento', 'ajax_tratamento');
 
-function ajax_tratamento(){
+function ajax_tratamento()
+{
+
     date_default_timezone_set('America/Sao_Paulo');
     require_once 'perguntas.php';
 
-    $msg                = sanitize_text_field($_POST["msg"]);
-    $time               = sanitize_text_field($_POST["time"]);
-    $step               = sanitize_text_field($_POST["step"]);
-    $json_gerado        = sanitize_text_field($_POST["json_gerado"]);
-    $finalizar_chat     = sanitize_text_field($_POST["finalizar_chat"]);
-    $monta_resultados   = sanitize_text_field($_POST["monta_resultados"]);
-    $consulta           = sanitize_text_field($_POST["consulta"]);
-    $reinicia_chat      = sanitize_text_field($_POST["$reinicia_chat"]);
-    
-    if(isset($reinicia_chat)){
+    isset($_POST['time']) ? $time = sanitize_text_field($_POST["time"]) : $time = NULL;
+    isset($_POST['json_gerado']) ? $json_gerado = sanitize_text_field($_POST["json_gerado"]) : $json_gerado = NULL;
+    isset($_POST['reinicia_chat']) ? $reinicia_chat = sanitize_text_field($_POST["reinicia_chat"]) : $reinicia_chat = NULL;
+
+    if (isset($reinicia_chat)) {
         unset($_COOKIE['chat_iniciado']);
         unset($_COOKIE['chatbot_status']);
         unset($_COOKIE['chatbot_useremail']);
@@ -24,33 +21,29 @@ function ajax_tratamento(){
         $output = 'true';
     }
 
-    if ($msg != '') {
+    if (isset($_POST["msg"]) && isset($_POST["step"])) {
 
         $output = [
-            "msg" => strip_tags($msg),
-            "json_gerado" => monta_json($step, $msg, $perguntas, $json_gerado)
+            "msg" => strip_tags($_POST["msg"]),
+            "json_gerado" => monta_json($_POST["step"], $_POST["msg"], $perguntas, $json_gerado)
         ];
-
-    } else if ($time != '') {
+    } else if (!empty($time)) {
 
         $output = date('H:i');
+    } else if (isset($_POST["step"])) {
 
-    } else if ($step != '') {
+        $output =  resposta($perguntas, $_POST["step"]);
+    } else if (isset($_POST["finalizar_chat"])) {
 
-        $output =  resposta($perguntas, $step);
-
-    }else if (isset($finalizar_chat)) {
-
-        
-        $array = explode('@@@', $finalizar_chat);
+        $array = explode('@@@', $_POST["finalizar_chat"]);
         $json_gerado = [];
 
         foreach ($array as $key => $value) {
             $json_gerado[] .= json_encode(explode('&&&', $value), JSON_UNESCAPED_UNICODE);
         }
 
-        if (isset($finalizar_chat)) {
-            $array = explode('@@@', $finalizar_chat);
+        if (isset($_POST["finalizar_chat"])) {
+            $array = explode('@@@', sanitize_text_field($_POST["finalizar_chat"]));
             $json_gerado = [];
             $json_envia = [];
 
@@ -70,53 +63,58 @@ function ajax_tratamento(){
                 ];
             }
 
-            if(isset($monta_resultados) && isset($consulta)){
-                if(insert_db(gerar_relatorio($json_envia, $perguntas), $consulta)){
-                    $output = insert_db(gerar_relatorio($json_envia, $perguntas), $consulta);
-                }else{
+            if (isset($_COOKIE['chatbot_useremail'])) {
+
+                if (insert_db(gerar_relatorio($json_envia, $perguntas), $_COOKIE['chatbot_useremail'])) {
+                    $output = insert_db(gerar_relatorio($json_envia, $perguntas), $_COOKIE['chatbot_useremail']);
+                } else {
                     $output = 'error';
-                }   
+                }
             }
-
         }
-        
-    }else{
+    } else if(isset($_POST['monta_resultados']) && isset($_POST['consulta'])){
 
+        global $wpdb;
+        $table_name = $wpdb->prefix . "chat_bot";
+        $result = $wpdb->get_results("SELECT * FROM $table_name WHERE email_usuario = '$_POST[consulta]' ")[0];
+        $output = $result;
+
+    } else {
         $output = 'error';
-
     }
 
     wp_send_json($output);
-
 }
 
-function insert_db($results, $email){
+function insert_db($results, $email)
+{
 
     global $wpdb;
     $table_name = $wpdb->prefix . "chat_bot";
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
     $email_usuario = $email;
     $rowcount = $wpdb->get_var("SELECT COUNT(*) FROM $table_name WHERE email_usuario = '$email_usuario' ");
 
-    if($rowcount <= 0){
+    if ($rowcount <= 0) {
         $data = array(
-            'time' => current_time( 'mysql' ), 
+            'time' => current_time('mysql'),
             'nome_usuario'      => $results['nome_usuario'],
             'email_usuario'     => $results['email_usuario'],
-            'empresa_usuario'   => $results['empresa_usuario'], 
+            'empresa_usuario'   => $results['empresa_usuario'],
             'telefone_usuario'  => $results['telefone_usuario'],
             'json_respostas'    => json_encode($results),
         );
-        $retorno = $wpdb->insert($table_name,$data);
-
-    }else{
+        $retorno = $wpdb->insert($table_name, $data);
+    } else {
         $retorno = $wpdb->get_results("SELECT * FROM $table_name WHERE email_usuario = '$email_usuario' ")[0];
     }
     return $retorno;
 }
 
 
-function monta_json($step, $msg, $perguntas, $json_gerado = ''){
+function monta_json($step, $msg, $perguntas, $json_gerado = '')
+{
 
     $step_atual = $step - 1;
     $texto_pergunta = strip_tags($perguntas['perguntas'][$step]['texto']);
@@ -170,7 +168,7 @@ function monta_json($step, $msg, $perguntas, $json_gerado = ''){
             $processo[] .= $make;
         }
 
-        return $processo[$step];
+        return $processo[$_POST["step"]];
     }
 
     function carrega_alternativas($alternativas, $posicao_pergunta)
@@ -207,9 +205,9 @@ function monta_json($step, $msg, $perguntas, $json_gerado = ''){
         return $coluna;
     }
 
-    function resposta($perguntas, $step){
+    function resposta($perguntas, $step)
+    {
 
-        $retorno = '';
         if (monta_chat($perguntas['perguntas'], $step)) {
 
             return array(
@@ -221,7 +219,8 @@ function monta_json($step, $msg, $perguntas, $json_gerado = ''){
         }
     }
 
-    function get_peso_total($perguntas, $tema){
+    function get_peso_total($perguntas, $tema)
+    {
         $peso_total = 0;
         foreach ($perguntas['perguntas'] as $pergunta) {
             if (!empty($pergunta['tema'])) {
@@ -233,7 +232,8 @@ function monta_json($step, $msg, $perguntas, $json_gerado = ''){
         return $peso_total;
     }
 
-    function get_alternativas_usuario($perguntas, $tema, $resultados){
+    function get_alternativas_usuario($perguntas, $tema, $resultados)
+    {
 
         $pergunta_alternativa_peso = 0;
 
@@ -247,16 +247,15 @@ function monta_json($step, $msg, $perguntas, $json_gerado = ''){
                     $alternativa = $resultado['mensagem_usuario'][0];
 
                     $pergunta_alternativa_peso += $pergunta['alternativas'][$alternativa]['peso'];
-
                 }
             }
-
         }
 
         return $pergunta_alternativa_peso;
     }
 
-    function get_resultados($porcentagem){
+    function get_resultados($porcentagem)
+    {
 
         switch (true) {
 
@@ -282,13 +281,14 @@ function monta_json($step, $msg, $perguntas, $json_gerado = ''){
         }
 
 
-        return[
+        return [
             "nivel" => $nivel,
             "classificacao" => $classificacao
         ];
     }
 
-    function gerar_relatorio($resultados, $perguntas){
+    function gerar_relatorio($resultados, $perguntas)
+    {
 
         $json_envia = [];
         $peso_total = 0;
@@ -300,7 +300,7 @@ function monta_json($step, $msg, $perguntas, $json_gerado = ''){
 
         /* get personal_info */
         foreach ($resultados as $personal_info) {
-            if(empty($personal_info['tema']) && empty($personal_info['peso'])){
+            if (empty($personal_info['tema']) && empty($personal_info['peso'])) {
                 $personal_info['step_id'] == '0'  ? $make_json['nome_usuario'] = $personal_info['mensagem_usuario'] : '';
                 $personal_info['step_id'] == '1'  ? $make_json['empresa_usuario'] = $personal_info['mensagem_usuario'] : '';
                 $personal_info['step_id'] == '13' ? $make_json['email_usuario'] = $personal_info['mensagem_usuario'] : '';
@@ -333,23 +333,18 @@ function monta_json($step, $msg, $perguntas, $json_gerado = ''){
                 "tema" => $tema,
                 "nivel" => get_resultados($porcentagem)['nivel'],
                 "classificacao" => get_resultados($porcentagem)['classificacao'],
-                "porcentagem" =>  $porcentagem."%"
+                "porcentagem" =>  $porcentagem . "%"
             ];
-
         }
 
-        $porcentagem_geral = intval($usuario_resultado_geral / $total_resultado_geral *100);
+        $porcentagem_geral = intval($usuario_resultado_geral / $total_resultado_geral * 100);
 
         $make_json['resultados'][] = [
             "tema" => 'Resultado Geral',
             "nivel" => get_resultados($porcentagem_geral)['nivel'],
             "classificacao" => get_resultados($porcentagem_geral)['classificacao'],
-            "porcentagem" =>  $porcentagem_geral."%"
+            "porcentagem" =>  $porcentagem_geral . "%"
         ];
 
         return $make_json;
-
     }
-
-
-

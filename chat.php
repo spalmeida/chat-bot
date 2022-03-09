@@ -46,6 +46,7 @@ function deactivation_plugin_database_tables()
     foreach ($tableArray as $tablename) {
         $wpdb->query("DROP TABLE IF EXISTS $tablename");
     }
+
 }
 register_deactivation_hook(__FILE__, 'deactivation_plugin_database_tables');
 
@@ -53,12 +54,6 @@ register_deactivation_hook(__FILE__, 'deactivation_plugin_database_tables');
     setcookie("chatbot_useremail", $_POST["chatbot_useremail"]);
     setcookie("chatbot_status", 'finalizado');
   }
-
-function plugin_name($dir){
-
-    return reset(explode('/', str_replace(WP_PLUGIN_DIR . '/', '', __DIR__))).$dir;
-
-}
 
 /*
   |--------------------------------------------------------------------------
@@ -100,6 +95,7 @@ function script_enqueuer() {
  wp_localize_script('js-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')), $version);
 
  wp_enqueue_style('css-style', plugin_dir_url(__FILE__) . 'dist/css/style.css', get_stylesheet_uri(), $version);
+  wp_enqueue_style('custom-style', plugin_dir_url(__FILE__) . 'dist/css/custom.css', get_stylesheet_uri(), $version);
  wp_enqueue_style('css-scrollbar', plugin_dir_url(__FILE__) . 'dist/css/scrollbar.min.css', get_stylesheet_uri(), $version);
  wp_enqueue_style('datatables-css', '//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css', get_stylesheet_uri(), $version); 
  wp_enqueue_style('datatables-buttons-css', 'https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css', get_stylesheet_uri(), $version);
@@ -118,13 +114,8 @@ add_action( 'init', 'script_enqueuer', 10, 1 );
 function chat_template()
 {
 
-    $require_page = '';
-    if(isset($_COOKIE['chatbot_status']) && isset($_COOKIE['chatbot_useremail'])){
-        if($_COOKIE['chatbot_status'] == 'finalizado' && $_COOKIE['chatbot_useremail'] != ''){
-            $require_page = 'dist/resultados.php';
-        }else{
-            $require_page = 'chat_template.php';
-        }
+    if(isset($_COOKIE['chatbot_useremail']) && $_COOKIE['chatbot_useremail'] != "0"){
+		$require_page = 'dist/resultados.php';
     }else{
         $require_page = 'chat_template.php';
     }

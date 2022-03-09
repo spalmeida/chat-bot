@@ -37,6 +37,9 @@
 			<canvas id="graph-result"></canvas>
 		</div>
 		<div class="buttons">
+			<button id="limpar_cookie" class="imprimir" disabled>Refazer</button>
+		</div>
+		<div class="buttons">
 			<button class="imprimir" disabled>Imprimir</button>
 		</div>
 		<div class="itens"><span class="loading">Carregando...</span></div>
@@ -59,3 +62,22 @@
 	</header>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+	  const limpar_cookie = document.querySelector("#limpar_cookie");
+	  limpar_cookie.addEventListener("click", ()=>{
+		  setCookie( "chatbot_useremail", "0", 0 );
+		  setCookie( "chatbot_status", "finalizado", 0 );
+		  setCookie( "chat_iniciado", "", 0 );
+		  console.log('Cookies removidos');
+		  document.location.reload(true);
+	  });
+</script>

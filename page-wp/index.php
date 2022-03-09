@@ -12,9 +12,8 @@
       <h3>Relátorio de respostas "Chat Bot"</h3>
     </header>
     <div class="subheader">
-      <p>Shortcode para uso: <code>[chat]</code> *Adicione esse shortcode em sua página.</p>
+		<p>Shortcode para uso: <code>[chat]</code> *Adicione esse shortcode em sua página. <button class="btn-consultar" id="limpar_cookie">Limpar Cookie</button></p>
     </div>
-	<!--<button id="limpar-cookies" type="button">Limpar cookies</button>-->
 
     <div class="resultados">
       <table id="resultado_chat_bot" class="display" style="width:100%">
@@ -77,20 +76,30 @@
         'excelHtml5'
         ]
       });
-    });
-	  
-	  
-	  
-	  
-	  function erase_cookie(name) {
-		document.cookie = name + "=; Max-Age=-99999999;";
-	  }
-	  
-	  $('#limpar-cookies').on('click', function(){
-		  erase_cookie('chatbot_status');
-		  erase_cookie('chatbot_useremail');
-		  erase_cookie('chat_iniciado');
-		  
-		  alert('Cookies limpos com sucesso!')
+    });  
+
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+	  const limpar_cookie = document.querySelector("#limpar_cookie");
+	  limpar_cookie.addEventListener("click", ()=>{
+		  setCookie( "chatbot_useremail", "", 0 );
+		  setCookie( "chatbot_status", "finalizado", 0 );
+		  setCookie( "chat_iniciado", "", 0 );		  
+		  console.log('Cookies removidos');
+		  document.location.reload(true);
 	  });
+	  
+	  
+	  
+	  $('.btn-consultar').on('click', function(){
+		  setCookie( "chatbot_visualizando", "1", 1);
+	  });
+	  
   </script>

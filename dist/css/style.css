@@ -835,25 +835,6 @@
 	}
 }    
 
-
-
-#limpar-cookies {
-    border-radius: 13px;
-    box-shadow: 26px 26px 53px #d9d9d9, -26px -26px 53px #ffffff;
-    border: none;
-    padding: 10px;
-    margin: 10px 20px;
-    background-color: #fff;
-    color: #1d2327;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all .4s;
-}
-
-#limpar-cookies:hover {
-    transform: scale(1.1);
-}
-
 .chat-bot-life {
     background: linear-gradient(118.6deg, #FF9900 0%, #F79D12 7.34%, #E3A842 22.93%, #C2BA8E 44.03%, #B3C2B2 54.12%, #7EACA6 62.37%, #48969B 72.46%, #218692 80.72%, #097C8D 87.14%, #00788B 91.72%);
     width: 100vw;
